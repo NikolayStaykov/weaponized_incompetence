@@ -53,6 +53,8 @@ roughness = 0.7
 
 [sub_resource type="BoxMesh" id="BoxMesh_yu6ao"]
 
+[sub_resource type="PrismMesh" id="PrismMesh_jj0qi"]
+
 [node name="Node3D" type="Node3D" unique_id=1462823019]
 
 [node name="CharacterBody3D" type="CharacterBody3D" parent="." unique_id=979730421]
@@ -124,7 +126,7 @@ transform = Transform3D(20, 0, 0, 0, 1, 0, 0, 0, 20, 0, 0, 0)
 shape = SubResource("BoxShape3D_o0rjc")
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="room/wall3" unique_id=1633211872]
-transform = Transform3D(20, 0, 0, 0, 1, 0, 0, 0, 20, 0, 0, 0)
+transform = Transform3D(19.985754, 0, -3.3881318e-21, 0, 0.99928766, 0, -3.3881318e-21, 0, 19.985754, 0, 0, 0)
 material_override = SubResource("StandardMaterial3D_r4s8j")
 mesh = SubResource("BoxMesh_jj0qi")
 
@@ -153,7 +155,106 @@ mesh = SubResource("BoxMesh_yk2f3")
 transform = Transform3D(0.52178913, 0, 0, 0, -0.019428492, 0, 0, 0, 0.14980048, -1.3470268, 0.020623177, 0.37862408)
 mesh = SubResource("BoxMesh_yu6ao")
 
-[node name="door2" type="MeshInstance3D" parent="room" unique_id=1997033185]
-transform = Transform3D(0.08, 0, 0, 0, 2.5, 0, 0, 0, 1.5, 1.0764104, 0.73485553, 4.0055923)
+[node name="door2" type="MeshInstance3D" parent="room" unique_id=676545262]
+transform = Transform3D(-3.496911e-09, 0, 1.5, 0, 2.5, 0, -0.08, 0, -6.556708e-08, -5.2349763, 0.7537786, -2.652195)
 mesh = SubResource("BoxMesh_dvvjl")
+surface_material_override/0 = SubResource("StandardMaterial3D_3k0mj")
+
+[node name="ammo_dispenser" type="Node3D" parent="room" unique_id=1003743857]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.4091754, 1.5025703, 5.965894)
+
+[node name="door2" type="MeshInstance3D" parent="room/ammo_dispenser" unique_id=1997033185]
+transform = Transform3D(0.08, 0, 0, 0, 0.8255868, 0, 0, 0, 0.41987634, -0.012639403, 0, 0)
+mesh = SubResource("BoxMesh_dvvjl")
+surface_material_override/0 = SubResource("StandardMaterial3D_3k0mj")
+
+[node name="door3" type="MeshInstance3D" parent="room/ammo_dispenser" unique_id=2104647612]
+transform = Transform3D(0.08, 0, 0, 0, 0.8255868, 0, 0, 0, 0.41987634, -0.83496654, 0, 0)
+mesh = SubResource("BoxMesh_dvvjl")
+surface_material_override/0 = SubResource("StandardMaterial3D_3k0mj")
+
+[node name="door4" type="MeshInstance3D" parent="room/ammo_dispenser" unique_id=1017151490]
+transform = Transform3D(-3.4969112e-09, 0.8255868, 1.6045033e-15, -3.4969112e-09, 1.5774367e-15, -0.41987634, -0.080000006, -3.6087545e-08, 1.8353377e-08, -0.42939672, 0.20180857, -0.17099285)
+mesh = SubResource("BoxMesh_dvvjl")
+surface_material_override/0 = SubResource("StandardMaterial3D_3k0mj")
+
+[node name="door5" type="MeshInstance3D" parent="room/ammo_dispenser" unique_id=1689760236]
+transform = Transform3D(-3.4969105e-09, 0.9022272, 3.977705e-15, 0.058984067, 2.9077379e-08, -0.43659166, -0.054045163, -2.6642647e-08, -0.4764895, -0.41937602, 0.5978342, 0.054490566)
+mesh = SubResource("BoxMesh_dvvjl")
+surface_material_override/0 = SubResource("StandardMaterial3D_3k0mj")
+
+[node name="door6" type="MeshInstance3D" parent="room/ammo_dispenser" unique_id=69315632]
+transform = Transform3D(-3.726214e-08, 0, 0.06605078, 0, 0.37422395, 0, -0.8524584, 0, -2.8871714e-09, -0.0038979053, 0.54695594, 0.22982311)
+mesh = SubResource("PrismMesh_jj0qi")
+surface_material_override/0 = SubResource("StandardMaterial3D_3k0mj")
+
+[node name="door7" type="MeshInstance3D" parent="room/ammo_dispenser" unique_id=459461622]
+transform = Transform3D(-3.726214e-08, 0, 0.06605078, 0, 0.37422395, 0, -0.8524584, 0, -2.8871714e-09, -0.8372067, 0.54695594, 0.22982311)
+mesh = SubResource("PrismMesh_jj0qi")
+surface_material_override/0 = SubResource("StandardMaterial3D_3k0mj")
+
+[node name="ammo_dispenser2" type="Node3D" parent="room" unique_id=1188660413]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.3579941, 1.5025703, 5.965894)
+
+[node name="door2" type="MeshInstance3D" parent="room/ammo_dispenser2" unique_id=1564847839]
+transform = Transform3D(0.08, 0, 0, 0, 0.8255868, 0, 0, 0, 0.41987634, -0.012639403, 0, 0)
+mesh = SubResource("BoxMesh_dvvjl")
+surface_material_override/0 = SubResource("StandardMaterial3D_3k0mj")
+
+[node name="door3" type="MeshInstance3D" parent="room/ammo_dispenser2" unique_id=255380770]
+transform = Transform3D(0.08, 0, 0, 0, 0.8255868, 0, 0, 0, 0.41987634, -0.83496654, 0, 0)
+mesh = SubResource("BoxMesh_dvvjl")
+surface_material_override/0 = SubResource("StandardMaterial3D_3k0mj")
+
+[node name="door4" type="MeshInstance3D" parent="room/ammo_dispenser2" unique_id=1671700454]
+transform = Transform3D(-3.4969112e-09, 0.8255868, 1.6045033e-15, -3.4969112e-09, 1.5774367e-15, -0.41987634, -0.080000006, -3.6087545e-08, 1.8353377e-08, -0.42939672, 0.20180857, -0.17099285)
+mesh = SubResource("BoxMesh_dvvjl")
+surface_material_override/0 = SubResource("StandardMaterial3D_3k0mj")
+
+[node name="door5" type="MeshInstance3D" parent="room/ammo_dispenser2" unique_id=1392129084]
+transform = Transform3D(-3.4969105e-09, 0.9022272, 3.977705e-15, 0.058984067, 2.9077379e-08, -0.43659166, -0.054045163, -2.6642647e-08, -0.4764895, -0.41937602, 0.5978342, 0.054490566)
+mesh = SubResource("BoxMesh_dvvjl")
+surface_material_override/0 = SubResource("StandardMaterial3D_3k0mj")
+
+[node name="door6" type="MeshInstance3D" parent="room/ammo_dispenser2" unique_id=2107517698]
+transform = Transform3D(-3.726214e-08, 0, 0.06605078, 0, 0.37422395, 0, -0.8524584, 0, -2.8871714e-09, -0.0038979053, 0.54695594, 0.22982311)
+mesh = SubResource("PrismMesh_jj0qi")
+surface_material_override/0 = SubResource("StandardMaterial3D_3k0mj")
+
+[node name="door7" type="MeshInstance3D" parent="room/ammo_dispenser2" unique_id=1516444538]
+transform = Transform3D(-3.726214e-08, 0, 0.06605078, 0, 0.37422395, 0, -0.8524584, 0, -2.8871714e-09, -0.8372067, 0.54695594, 0.22982311)
+mesh = SubResource("PrismMesh_jj0qi")
+surface_material_override/0 = SubResource("StandardMaterial3D_3k0mj")
+
+[node name="ammo_dispenser3" type="Node3D" parent="room" unique_id=1816690527]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -3.1615264, 1.5025703, 5.965894)
+
+[node name="door2" type="MeshInstance3D" parent="room/ammo_dispenser3" unique_id=958265342]
+transform = Transform3D(0.08, 0, 0, 0, 0.8255868, 0, 0, 0, 0.41987634, -0.012639403, 0, 0)
+mesh = SubResource("BoxMesh_dvvjl")
+surface_material_override/0 = SubResource("StandardMaterial3D_3k0mj")
+
+[node name="door3" type="MeshInstance3D" parent="room/ammo_dispenser3" unique_id=1451064359]
+transform = Transform3D(0.08, 0, 0, 0, 0.8255868, 0, 0, 0, 0.41987634, -0.83496654, 0, 0)
+mesh = SubResource("BoxMesh_dvvjl")
+surface_material_override/0 = SubResource("StandardMaterial3D_3k0mj")
+
+[node name="door4" type="MeshInstance3D" parent="room/ammo_dispenser3" unique_id=717591091]
+transform = Transform3D(-3.4969112e-09, 0.8255868, 1.6045033e-15, -3.4969112e-09, 1.5774367e-15, -0.41987634, -0.080000006, -3.6087545e-08, 1.8353377e-08, -0.42939672, 0.20180857, -0.17099285)
+mesh = SubResource("BoxMesh_dvvjl")
+surface_material_override/0 = SubResource("StandardMaterial3D_3k0mj")
+
+[node name="door5" type="MeshInstance3D" parent="room/ammo_dispenser3" unique_id=1412158183]
+transform = Transform3D(-3.4969105e-09, 0.9022272, 3.977705e-15, 0.058984067, 2.9077379e-08, -0.43659166, -0.054045163, -2.6642647e-08, -0.4764895, -0.41937602, 0.5978342, 0.054490566)
+mesh = SubResource("BoxMesh_dvvjl")
+surface_material_override/0 = SubResource("StandardMaterial3D_3k0mj")
+
+[node name="door6" type="MeshInstance3D" parent="room/ammo_dispenser3" unique_id=852674955]
+transform = Transform3D(-3.726214e-08, 0, 0.06605078, 0, 0.37422395, 0, -0.8524584, 0, -2.8871714e-09, -0.0038979053, 0.54695594, 0.22982311)
+mesh = SubResource("PrismMesh_jj0qi")
+surface_material_override/0 = SubResource("StandardMaterial3D_3k0mj")
+
+[node name="door7" type="MeshInstance3D" parent="room/ammo_dispenser3" unique_id=359722959]
+transform = Transform3D(-3.726214e-08, 0, 0.06605078, 0, 0.37422395, 0, -0.8524584, 0, -2.8871714e-09, -0.8372067, 0.54695594, 0.22982311)
+mesh = SubResource("PrismMesh_jj0qi")
 surface_material_override/0 = SubResource("StandardMaterial3D_3k0mj")
