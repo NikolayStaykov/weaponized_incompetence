@@ -34,6 +34,12 @@ func _physics_process(delta: float) -> void:
 		velocity.x = move_toward(velocity.x, 0, SPEED)
 		velocity.z = move_toward(velocity.z, 0, SPEED)
 	
+	if Input.is_action_just_pressed("interact_1") and %interact_ray.is_colliding():
+		%interact_ray.get_collider().get_parent().interact_1()
+	
+	if Input.is_action_just_pressed("interact_2") and %interact_ray.is_colliding():
+		%interact_ray.get_collider().get_parent().interact_2()
+	
 	_rotate_camera(delta)
 	move_and_slide()
 

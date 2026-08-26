@@ -1,8 +1,11 @@
 [gd_scene format=3 uid="uid://dxy8fjq0dip5r"]
 
 [ext_resource type="Script" uid="uid://bqfy2up1344se" path="res://Game Scene/character_body_3d.gd" id="1_o0rjc"]
+[ext_resource type="Script" uid="uid://d2bmy3t1pyf82" path="res://Game Scene/game.gd" id="1_viuc7"]
 [ext_resource type="Texture2D" uid="uid://cqpu4snywnwxp" path="res://Game Scene/Textures/png-clipart-dark-gray-concrete-floor-cement-ground-dark-gray.png" id="2_jj0qi"]
 [ext_resource type="FontFile" uid="uid://dwpltggtjler8" path="res://Common/Fonts/HomeVideo-BLG6G.ttf" id="3_dvvjl"]
+[ext_resource type="Script" uid="uid://cyy48qrbnw15q" path="res://Game Scene/horizontal_control.gd" id="3_yk2f3"]
+[ext_resource type="Script" uid="uid://c8uwoa11qpt1i" path="res://Game Scene/vertiacl_control.gd" id="4_yu6ao"]
 
 [sub_resource type="CapsuleMesh" id="CapsuleMesh_dvvjl"]
 
@@ -62,6 +65,12 @@ roughness = 0.7
 
 [sub_resource type="BoxMesh" id="BoxMesh_viuc7"]
 
+[sub_resource type="CylinderShape3D" id="CylinderShape3D_yk2f3"]
+radius = 1.7734375
+
+[sub_resource type="CylinderShape3D" id="CylinderShape3D_yu6ao"]
+radius = 1.659668
+
 [sub_resource type="BoxMesh" id="BoxMesh_xsmdc"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_cwcgk"]
@@ -69,6 +78,17 @@ albedo_color = Color(0, 0, 0, 1)
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_yk2f3"]
 size = Vector3(6.0644836, 1, 1)
+
+[sub_resource type="CylinderMesh" id="CylinderMesh_viuc7"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_dburu"]
+albedo_color = Color(1, 0, 0, 1)
+
+[sub_resource type="BoxMesh" id="BoxMesh_8jppp"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_bltve"]
+transparency = 1
+albedo_color = Color(1, 1, 1, 0.20392157)
 
 [sub_resource type="BoxMesh" id="BoxMesh_r4s8j"]
 
@@ -79,340 +99,380 @@ albedo_color = Color(0.39607844, 0.3019608, 0.03137255, 1)
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_dvvjl"]
 
-[node name="Node3D" type="Node3D" unique_id=1462823019]
+[node name="Node3D" type="Node3D" unique_id=885241539]
 
-[node name="CharacterBody3D" type="CharacterBody3D" parent="." unique_id=979730421]
+[node name="game" type="Node3D" parent="." unique_id=1462823019]
+unique_name_in_owner = true
+script = ExtResource("1_viuc7")
+
+[node name="CharacterBody3D" type="CharacterBody3D" parent="game" unique_id=979730421]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.9264555, 0)
 script = ExtResource("1_o0rjc")
 
-[node name="MeshInstance3D" type="MeshInstance3D" parent="CharacterBody3D" unique_id=1777667330]
+[node name="MeshInstance3D" type="MeshInstance3D" parent="game/CharacterBody3D" unique_id=1777667330]
 mesh = SubResource("CapsuleMesh_dvvjl")
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="CharacterBody3D" unique_id=1626540054]
+[node name="CollisionShape3D" type="CollisionShape3D" parent="game/CharacterBody3D" unique_id=1626540054]
 shape = SubResource("CapsuleShape3D_yk2f3")
 
-[node name="Camera3D" type="Camera3D" parent="CharacterBody3D" unique_id=1591421527]
+[node name="Camera3D" type="Camera3D" parent="game/CharacterBody3D" unique_id=1591421527]
 unique_name_in_owner = true
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.6642804, 0)
 
-[node name="WorldEnvironment" type="WorldEnvironment" parent="." unique_id=259525021]
+[node name="MarginContainer" type="MarginContainer" parent="game/CharacterBody3D/Camera3D" unique_id=3177196]
+anchors_preset = -1
+anchor_right = 1.001
+anchor_bottom = 1.0020001
+offset_right = -0.15209961
+offset_bottom = -0.29608154
+
+[node name="Label" type="Label" parent="game/CharacterBody3D/Camera3D/MarginContainer" unique_id=113490718]
+layout_mode = 2
+text = "."
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="interact_ray" type="RayCast3D" parent="game/CharacterBody3D/Camera3D" unique_id=1769631870]
+unique_name_in_owner = true
+transform = Transform3D(1, 0, 0, 0, -4.371139e-08, -1, 0, 1, -4.371139e-08, 0, 0, -0.27902222)
+collision_mask = 2
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="game" unique_id=259525021]
 environment = SubResource("Environment_dvvjl")
 
-[node name="room" type="Node3D" parent="." unique_id=1098478884]
+[node name="room" type="Node3D" parent="game" unique_id=1098478884]
 
-[node name="floor" type="StaticBody3D" parent="room" unique_id=543186021]
+[node name="floor" type="StaticBody3D" parent="game/room" unique_id=543186021]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -1, 0)
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="room/floor" unique_id=391547614]
+[node name="CollisionShape3D" type="CollisionShape3D" parent="game/room/floor" unique_id=391547614]
 transform = Transform3D(20, 0, 0, 0, 1, 0, 0, 0, 20, 0, 0, 0)
 shape = SubResource("BoxShape3D_o0rjc")
 
-[node name="MeshInstance3D" type="MeshInstance3D" parent="room/floor" unique_id=1028435170]
+[node name="MeshInstance3D" type="MeshInstance3D" parent="game/room/floor" unique_id=1028435170]
 transform = Transform3D(20, 0, 0, 0, 1, 0, 0, 0, 20, 0, 0, 0)
 material_override = SubResource("StandardMaterial3D_dvvjl")
 mesh = SubResource("BoxMesh_jj0qi")
 surface_material_override/0 = SubResource("StandardMaterial3D_yk2f3")
 
-[node name="MeshInstance3D2" type="MeshInstance3D" parent="room/floor" unique_id=1771201029]
+[node name="MeshInstance3D2" type="MeshInstance3D" parent="game/room/floor" unique_id=1771201029]
 transform = Transform3D(20, 0, 0, 0, 1, 0, 0, 0, 20, -0.0035339594, 4.432438, 0.0014214516)
 material_override = SubResource("StandardMaterial3D_yu6ao")
 mesh = SubResource("BoxMesh_jj0qi")
 
-[node name="wall" type="StaticBody3D" parent="room" unique_id=1029722766]
+[node name="wall" type="StaticBody3D" parent="game/room" unique_id=1029722766]
 transform = Transform3D(-4.371139e-08, -1, 0, 1, -4.371139e-08, 0, 0, 0, 1, 3.834403, 2.9672403, 0)
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="room/wall" unique_id=2019490892]
+[node name="CollisionShape3D" type="CollisionShape3D" parent="game/room/wall" unique_id=2019490892]
 transform = Transform3D(20, 0, 0, 0, 1, 0, 0, 0, 20, 0, 0, 0)
 shape = SubResource("BoxShape3D_o0rjc")
 
-[node name="MeshInstance3D" type="MeshInstance3D" parent="room/wall" unique_id=1967668822]
+[node name="MeshInstance3D" type="MeshInstance3D" parent="game/room/wall" unique_id=1967668822]
 transform = Transform3D(20, 0, 0, 0, 1, 0, 0, 0, 20, 0, 0, 0)
 material_override = SubResource("StandardMaterial3D_viuc7")
 mesh = SubResource("BoxMesh_jj0qi")
 
-[node name="wall2" type="StaticBody3D" parent="room" unique_id=950689043]
+[node name="wall2" type="StaticBody3D" parent="game/room" unique_id=950689043]
 transform = Transform3D(-4.371139e-08, -1, 0, 1, -4.371139e-08, 0, 0, 0, 1, -6.5154357, 2.9672403, 0)
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="room/wall2" unique_id=277906592]
+[node name="CollisionShape3D" type="CollisionShape3D" parent="game/room/wall2" unique_id=277906592]
 transform = Transform3D(20, 0, 0, 0, 1, 0, 0, 0, 20, 0, 0, 0)
 shape = SubResource("BoxShape3D_o0rjc")
 
-[node name="MeshInstance3D" type="MeshInstance3D" parent="room/wall2" unique_id=1931407692]
+[node name="MeshInstance3D" type="MeshInstance3D" parent="game/room/wall2" unique_id=1931407692]
 transform = Transform3D(20, 0, 0, 0, 1, 0, 0, 0, 20, 0, 0, 0)
 material_override = SubResource("StandardMaterial3D_xsmdc")
 mesh = SubResource("BoxMesh_jj0qi")
 
-[node name="wall3" type="StaticBody3D" parent="room" unique_id=237075227]
+[node name="wall3" type="StaticBody3D" parent="game/room" unique_id=237075227]
 transform = Transform3D(1.9106855e-15, 4.371139e-08, 1, 1, -4.371139e-08, 0, 4.371139e-08, 1, -4.371139e-08, -0.019909859, 2.9672403, 6.6793165)
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="room/wall3" unique_id=1989469392]
+[node name="CollisionShape3D" type="CollisionShape3D" parent="game/room/wall3" unique_id=1989469392]
 transform = Transform3D(20, 0, 0, 0, 1, 0, 0, 0, 20, 0, 0, 0)
 shape = SubResource("BoxShape3D_o0rjc")
 
-[node name="MeshInstance3D" type="MeshInstance3D" parent="room/wall3" unique_id=1633211872]
+[node name="MeshInstance3D" type="MeshInstance3D" parent="game/room/wall3" unique_id=1633211872]
 transform = Transform3D(19.985754, 0, -3.3881318e-21, 0, 0.99928766, 0, -3.3881318e-21, 0, 19.985754, 0, 0, 0)
 material_override = SubResource("StandardMaterial3D_r4s8j")
 mesh = SubResource("BoxMesh_jj0qi")
 
-[node name="wall4" type="StaticBody3D" parent="room" unique_id=1535238817]
+[node name="wall4" type="StaticBody3D" parent="game/room" unique_id=1535238817]
 transform = Transform3D(1.9106855e-15, 4.371139e-08, 1, 1, -4.371139e-08, 0, 4.371139e-08, 1, -4.371139e-08, -0.019909859, 2.9672403, -5.9272776)
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="room/wall4" unique_id=248248359]
+[node name="CollisionShape3D" type="CollisionShape3D" parent="game/room/wall4" unique_id=248248359]
 transform = Transform3D(20, 0, 0, 0, 1, 0, 0, 0, 20, 0, 0, 0)
 shape = SubResource("BoxShape3D_o0rjc")
 
-[node name="MeshInstance3D" type="MeshInstance3D" parent="room/wall4" unique_id=1701874052]
+[node name="MeshInstance3D" type="MeshInstance3D" parent="game/room/wall4" unique_id=1701874052]
 transform = Transform3D(20, 0, 0, 0, 1, 0, 0, 0, 20, 0, 0, 0)
 material_override = SubResource("StandardMaterial3D_4g0d1")
 mesh = SubResource("BoxMesh_jj0qi")
 
-[node name="door" type="MeshInstance3D" parent="room" unique_id=1191888962]
+[node name="door" type="MeshInstance3D" parent="game/room" unique_id=1191888962]
 transform = Transform3D(0.08, 0, 0, 0, 2.5, 0, 0, 0, 1.5, 3.3262386, 0.73485553, 2.326044)
 mesh = SubResource("BoxMesh_dvvjl")
 surface_material_override/0 = SubResource("StandardMaterial3D_3k0mj")
 
-[node name="handle" type="MeshInstance3D" parent="room/door" unique_id=765379623]
+[node name="handle" type="MeshInstance3D" parent="game/room/door" unique_id=765379623]
 transform = Transform3D(1.0375463, 0, 0, 0, 0.018590212, 0, 0, 0, 0.030113973, -0.6774788, 0.020692676, 0.43806088)
 mesh = SubResource("BoxMesh_yk2f3")
 
-[node name="MeshInstance3D" type="MeshInstance3D" parent="room/door" unique_id=1584983751]
+[node name="MeshInstance3D" type="MeshInstance3D" parent="game/room/door" unique_id=1584983751]
 transform = Transform3D(0.52178913, 0, 0, 0, -0.019428492, 0, 0, 0, 0.14980048, -1.3470268, 0.020623177, 0.37862408)
 mesh = SubResource("BoxMesh_yu6ao")
 
-[node name="ammo_dispenser" type="Node3D" parent="room" unique_id=1003743857]
+[node name="ammo_dispenser" type="Node3D" parent="game/room" unique_id=1003743857]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.4091754, 1.5025703, 5.965894)
 
-[node name="door2" type="MeshInstance3D" parent="room/ammo_dispenser" unique_id=1997033185]
+[node name="door2" type="MeshInstance3D" parent="game/room/ammo_dispenser" unique_id=1997033185]
 transform = Transform3D(0.08, 0, 0, 0, 0.8255868, 0, 0, 0, 0.41987634, -0.012639403, 0, 0)
 mesh = SubResource("BoxMesh_dvvjl")
 surface_material_override/0 = SubResource("StandardMaterial3D_3k0mj")
 
-[node name="door3" type="MeshInstance3D" parent="room/ammo_dispenser" unique_id=2104647612]
+[node name="door3" type="MeshInstance3D" parent="game/room/ammo_dispenser" unique_id=2104647612]
 transform = Transform3D(0.08, 0, 0, 0, 0.8255868, 0, 0, 0, 0.41987634, -0.83496654, 0, 0)
 mesh = SubResource("BoxMesh_dvvjl")
 surface_material_override/0 = SubResource("StandardMaterial3D_3k0mj")
 
-[node name="door4" type="MeshInstance3D" parent="room/ammo_dispenser" unique_id=1017151490]
+[node name="door4" type="MeshInstance3D" parent="game/room/ammo_dispenser" unique_id=1017151490]
 transform = Transform3D(-3.4969112e-09, 0.8255868, 1.6045033e-15, -3.4969112e-09, 1.5774367e-15, -0.41987634, -0.080000006, -3.6087545e-08, 1.8353377e-08, -0.42939672, 0.20180857, -0.17099285)
 mesh = SubResource("BoxMesh_dvvjl")
 surface_material_override/0 = SubResource("StandardMaterial3D_3k0mj")
 
-[node name="door5" type="MeshInstance3D" parent="room/ammo_dispenser" unique_id=1689760236]
+[node name="door5" type="MeshInstance3D" parent="game/room/ammo_dispenser" unique_id=1689760236]
 transform = Transform3D(-3.4969105e-09, 0.9022272, 3.977705e-15, 0.058984067, 2.9077379e-08, -0.43659166, -0.054045163, -2.6642647e-08, -0.4764895, -0.41937602, 0.5978342, 0.054490566)
 mesh = SubResource("BoxMesh_dvvjl")
 surface_material_override/0 = SubResource("StandardMaterial3D_3k0mj")
 
-[node name="door6" type="MeshInstance3D" parent="room/ammo_dispenser" unique_id=69315632]
+[node name="door6" type="MeshInstance3D" parent="game/room/ammo_dispenser" unique_id=69315632]
 transform = Transform3D(-3.726214e-08, 0, 0.06605078, 0, 0.37422395, 0, -0.8524584, 0, -2.8871714e-09, -0.0038979053, 0.54695594, 0.22982311)
 mesh = SubResource("PrismMesh_jj0qi")
 surface_material_override/0 = SubResource("StandardMaterial3D_3k0mj")
 
-[node name="door7" type="MeshInstance3D" parent="room/ammo_dispenser" unique_id=459461622]
+[node name="door7" type="MeshInstance3D" parent="game/room/ammo_dispenser" unique_id=459461622]
 transform = Transform3D(-3.726214e-08, 0, 0.06605078, 0, 0.37422395, 0, -0.8524584, 0, -2.8871714e-09, -0.8372067, 0.54695594, 0.22982311)
 mesh = SubResource("PrismMesh_jj0qi")
 surface_material_override/0 = SubResource("StandardMaterial3D_3k0mj")
 
-[node name="ammo_dispenser2" type="Node3D" parent="room" unique_id=1188660413]
+[node name="ammo_dispenser2" type="Node3D" parent="game/room" unique_id=1188660413]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.3579941, 1.5025703, 5.965894)
 
-[node name="door2" type="MeshInstance3D" parent="room/ammo_dispenser2" unique_id=1564847839]
+[node name="door2" type="MeshInstance3D" parent="game/room/ammo_dispenser2" unique_id=1564847839]
 transform = Transform3D(0.08, 0, 0, 0, 0.8255868, 0, 0, 0, 0.41987634, -0.012639403, 0, 0)
 mesh = SubResource("BoxMesh_dvvjl")
 surface_material_override/0 = SubResource("StandardMaterial3D_3k0mj")
 
-[node name="door3" type="MeshInstance3D" parent="room/ammo_dispenser2" unique_id=255380770]
+[node name="door3" type="MeshInstance3D" parent="game/room/ammo_dispenser2" unique_id=255380770]
 transform = Transform3D(0.08, 0, 0, 0, 0.8255868, 0, 0, 0, 0.41987634, -0.83496654, 0, 0)
 mesh = SubResource("BoxMesh_dvvjl")
 surface_material_override/0 = SubResource("StandardMaterial3D_3k0mj")
 
-[node name="door4" type="MeshInstance3D" parent="room/ammo_dispenser2" unique_id=1671700454]
+[node name="door4" type="MeshInstance3D" parent="game/room/ammo_dispenser2" unique_id=1671700454]
 transform = Transform3D(-3.4969112e-09, 0.8255868, 1.6045033e-15, -3.4969112e-09, 1.5774367e-15, -0.41987634, -0.080000006, -3.6087545e-08, 1.8353377e-08, -0.42939672, 0.20180857, -0.17099285)
 mesh = SubResource("BoxMesh_dvvjl")
 surface_material_override/0 = SubResource("StandardMaterial3D_3k0mj")
 
-[node name="door5" type="MeshInstance3D" parent="room/ammo_dispenser2" unique_id=1392129084]
+[node name="door5" type="MeshInstance3D" parent="game/room/ammo_dispenser2" unique_id=1392129084]
 transform = Transform3D(-3.4969105e-09, 0.9022272, 3.977705e-15, 0.058984067, 2.9077379e-08, -0.43659166, -0.054045163, -2.6642647e-08, -0.4764895, -0.41937602, 0.5978342, 0.054490566)
 mesh = SubResource("BoxMesh_dvvjl")
 surface_material_override/0 = SubResource("StandardMaterial3D_3k0mj")
 
-[node name="door6" type="MeshInstance3D" parent="room/ammo_dispenser2" unique_id=2107517698]
+[node name="door6" type="MeshInstance3D" parent="game/room/ammo_dispenser2" unique_id=2107517698]
 transform = Transform3D(-3.726214e-08, 0, 0.06605078, 0, 0.37422395, 0, -0.8524584, 0, -2.8871714e-09, -0.0038979053, 0.54695594, 0.22982311)
 mesh = SubResource("PrismMesh_jj0qi")
 surface_material_override/0 = SubResource("StandardMaterial3D_3k0mj")
 
-[node name="door7" type="MeshInstance3D" parent="room/ammo_dispenser2" unique_id=1516444538]
+[node name="door7" type="MeshInstance3D" parent="game/room/ammo_dispenser2" unique_id=1516444538]
 transform = Transform3D(-3.726214e-08, 0, 0.06605078, 0, 0.37422395, 0, -0.8524584, 0, -2.8871714e-09, -0.8372067, 0.54695594, 0.22982311)
 mesh = SubResource("PrismMesh_jj0qi")
 surface_material_override/0 = SubResource("StandardMaterial3D_3k0mj")
 
-[node name="ammo_dispenser3" type="Node3D" parent="room" unique_id=1816690527]
+[node name="ammo_dispenser3" type="Node3D" parent="game/room" unique_id=1816690527]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -3.1615264, 1.5025703, 5.965894)
 
-[node name="door2" type="MeshInstance3D" parent="room/ammo_dispenser3" unique_id=958265342]
+[node name="door2" type="MeshInstance3D" parent="game/room/ammo_dispenser3" unique_id=958265342]
 transform = Transform3D(0.08, 0, 0, 0, 0.8255868, 0, 0, 0, 0.41987634, -0.012639403, 0, 0)
 mesh = SubResource("BoxMesh_dvvjl")
 surface_material_override/0 = SubResource("StandardMaterial3D_3k0mj")
 
-[node name="door3" type="MeshInstance3D" parent="room/ammo_dispenser3" unique_id=1451064359]
+[node name="door3" type="MeshInstance3D" parent="game/room/ammo_dispenser3" unique_id=1451064359]
 transform = Transform3D(0.08, 0, 0, 0, 0.8255868, 0, 0, 0, 0.41987634, -0.83496654, 0, 0)
 mesh = SubResource("BoxMesh_dvvjl")
 surface_material_override/0 = SubResource("StandardMaterial3D_3k0mj")
 
-[node name="door4" type="MeshInstance3D" parent="room/ammo_dispenser3" unique_id=717591091]
+[node name="door4" type="MeshInstance3D" parent="game/room/ammo_dispenser3" unique_id=717591091]
 transform = Transform3D(-3.4969112e-09, 0.8255868, 1.6045033e-15, -3.4969112e-09, 1.5774367e-15, -0.41987634, -0.080000006, -3.6087545e-08, 1.8353377e-08, -0.42939672, 0.20180857, -0.17099285)
 mesh = SubResource("BoxMesh_dvvjl")
 surface_material_override/0 = SubResource("StandardMaterial3D_3k0mj")
 
-[node name="door5" type="MeshInstance3D" parent="room/ammo_dispenser3" unique_id=1412158183]
+[node name="door5" type="MeshInstance3D" parent="game/room/ammo_dispenser3" unique_id=1412158183]
 transform = Transform3D(-3.4969105e-09, 0.9022272, 3.977705e-15, 0.058984067, 2.9077379e-08, -0.43659166, -0.054045163, -2.6642647e-08, -0.4764895, -0.41937602, 0.5978342, 0.054490566)
 mesh = SubResource("BoxMesh_dvvjl")
 surface_material_override/0 = SubResource("StandardMaterial3D_3k0mj")
 
-[node name="door6" type="MeshInstance3D" parent="room/ammo_dispenser3" unique_id=852674955]
+[node name="door6" type="MeshInstance3D" parent="game/room/ammo_dispenser3" unique_id=852674955]
 transform = Transform3D(-3.726214e-08, 0, 0.06605078, 0, 0.37422395, 0, -0.8524584, 0, -2.8871714e-09, -0.0038979053, 0.54695594, 0.22982311)
 mesh = SubResource("PrismMesh_jj0qi")
 surface_material_override/0 = SubResource("StandardMaterial3D_3k0mj")
 
-[node name="door7" type="MeshInstance3D" parent="room/ammo_dispenser3" unique_id=359722959]
+[node name="door7" type="MeshInstance3D" parent="game/room/ammo_dispenser3" unique_id=359722959]
 transform = Transform3D(-3.726214e-08, 0, 0.06605078, 0, 0.37422395, 0, -0.8524584, 0, -2.8871714e-09, -0.8372067, 0.54695594, 0.22982311)
 mesh = SubResource("PrismMesh_jj0qi")
 surface_material_override/0 = SubResource("StandardMaterial3D_3k0mj")
 
-[node name="control_panel" type="Node3D" parent="room" unique_id=1277397738]
+[node name="control_panel" type="Node3D" parent="game/room" unique_id=1277397738]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -3.0302827, -0.43722177, -5.12566)
 
-[node name="door2" type="MeshInstance3D" parent="room/control_panel" unique_id=676545262]
+[node name="door2" type="MeshInstance3D" parent="game/room/control_panel" unique_id=676545262]
 transform = Transform3D(-3.4969105e-09, 0, 6.2667603, 0, 1.1393056, 0, -0.07999998, 0, -2.7392878e-07, 0.16144753, 0.14229345, 0.80123997)
 mesh = SubResource("BoxMesh_dvvjl")
 surface_material_override/0 = SubResource("StandardMaterial3D_3k0mj")
 
-[node name="door5" type="MeshInstance3D" parent="room/control_panel" unique_id=1594711232]
+[node name="door5" type="MeshInstance3D" parent="game/room/control_panel" unique_id=1594711232]
 transform = Transform3D(0.07556384, 0, 0, 0, 1.1393057, 0, 0, 0, 1.3829811, 3.2561061, 0.14229345, 0.072264194)
 mesh = SubResource("BoxMesh_dvvjl")
 surface_material_override/0 = SubResource("StandardMaterial3D_3k0mj")
 
-[node name="door3" type="MeshInstance3D" parent="room/control_panel" unique_id=510596272]
+[node name="door3" type="MeshInstance3D" parent="game/room/control_panel" unique_id=510596272]
 transform = Transform3D(-3.4969105e-09, -1.897991e-15, 6.2667603, -0.070962794, 0.6456655, -2.4298444e-07, -0.036936164, -1.2404705, -1.2647351e-07, 0.16144753, 0.9987836, 0.20030451)
 mesh = SubResource("BoxMesh_dvvjl")
 surface_material_override/0 = SubResource("StandardMaterial3D_3k0mj")
 
-[node name="door4" type="MeshInstance3D" parent="room/control_panel" unique_id=2039645931]
+[node name="door4" type="MeshInstance3D" parent="game/room/control_panel" unique_id=2039645931]
 transform = Transform3D(-9.665979e-08, 0, 0.094467066, 0, 0.57983464, 0, -2.2113183, 0, -4.1292867e-09, 3.245214, 0.95988405, -0.322299)
 mesh = SubResource("PrismMesh_yk2f3")
 surface_material_override/0 = SubResource("StandardMaterial3D_3k0mj")
 
-[node name="horizontal_control" type="MeshInstance3D" parent="room/control_panel" unique_id=132305844]
+[node name="horizontal_control" type="MeshInstance3D" parent="game/room/control_panel" unique_id=132305844]
 unique_name_in_owner = true
 transform = Transform3D(0.1, 0, 0, 0, 0.08642748, -0.050301995, 0, 0.050301995, 0.08642748, -0.10648465, 0.865, 0.74699974)
 mesh = SubResource("CylinderMesh_yu6ao")
+script = ExtResource("3_yk2f3")
 
-[node name="MeshInstance3D" type="MeshInstance3D" parent="room/control_panel/horizontal_control" unique_id=333379772]
+[node name="MeshInstance3D" type="MeshInstance3D" parent="game/room/control_panel/horizontal_control" unique_id=333379772]
 transform = Transform3D(0.49999958, 0, 0, 0, 0.49999994, -2.9802322e-08, 0, 1.4901161e-08, 0.9999999, 0, 0.673, -0.91)
 mesh = SubResource("BoxMesh_viuc7")
 
-[node name="MeshInstance3D2" type="MeshInstance3D" parent="room/control_panel/horizontal_control" unique_id=1618933916]
+[node name="MeshInstance3D2" type="MeshInstance3D" parent="game/room/control_panel/horizontal_control" unique_id=1618933916]
 transform = Transform3D(0.49999958, 0, 0, 0, 0.49999994, -2.9802322e-08, 0, 1.4901161e-08, 0.9999999, 0, 0.673, 0.91)
 mesh = SubResource("BoxMesh_viuc7")
 
-[node name="MeshInstance3D7" type="MeshInstance3D" parent="room/control_panel/horizontal_control" unique_id=500666934]
+[node name="MeshInstance3D7" type="MeshInstance3D" parent="game/room/control_panel/horizontal_control" unique_id=500666934]
 transform = Transform3D(0.49999952, 0, 0, 0, 0.49999994, -2.9802322e-08, 0, 1.4901161e-08, 0.9999999, 1.37, 0.673, 0)
 mesh = SubResource("BoxMesh_viuc7")
 
-[node name="MeshInstance3D8" type="MeshInstance3D" parent="room/control_panel/horizontal_control" unique_id=1513809938]
+[node name="MeshInstance3D8" type="MeshInstance3D" parent="game/room/control_panel/horizontal_control" unique_id=1513809938]
 transform = Transform3D(0.49999952, 0, 0, 0, 0.49999994, -2.9802322e-08, 0, 1.4901161e-08, 0.9999999, -1.37, 0.673, 0)
 mesh = SubResource("BoxMesh_viuc7")
 
-[node name="MeshInstance3D9" type="MeshInstance3D" parent="room/control_panel/horizontal_control" unique_id=1598489047]
+[node name="MeshInstance3D9" type="MeshInstance3D" parent="game/room/control_panel/horizontal_control" unique_id=1598489047]
 transform = Transform3D(0.35662523, 0, 1.1319685, 0, 0.5, 0, -0.35045463, 0, 1.1518995, -0.89, 0.673, 0.89)
 mesh = SubResource("BoxMesh_viuc7")
 
-[node name="MeshInstance3D10" type="MeshInstance3D" parent="room/control_panel/horizontal_control" unique_id=1584967714]
+[node name="MeshInstance3D10" type="MeshInstance3D" parent="game/room/control_panel/horizontal_control" unique_id=1584967714]
 transform = Transform3D(0.35662523, 0, 1.1319685, 0, 0.5, 0, -0.35045463, 0, 1.1518995, 0.89, 0.673, -0.89)
 mesh = SubResource("BoxMesh_viuc7")
 
-[node name="MeshInstance3D11" type="MeshInstance3D" parent="room/control_panel/horizontal_control" unique_id=77004247]
+[node name="MeshInstance3D11" type="MeshInstance3D" parent="game/room/control_panel/horizontal_control" unique_id=77004247]
 transform = Transform3D(0.35662523, 0, -1.1319685, 0, 0.5, 0, 0.35045463, 0, 1.1518995, -0.89, 0.673, -0.89)
 mesh = SubResource("BoxMesh_viuc7")
 
-[node name="MeshInstance3D12" type="MeshInstance3D" parent="room/control_panel/horizontal_control" unique_id=1867700278]
+[node name="MeshInstance3D12" type="MeshInstance3D" parent="game/room/control_panel/horizontal_control" unique_id=1867700278]
 transform = Transform3D(0.35662523, 0, -1.1319685, 0, 0.5, 0, 0.35045463, 0, 1.1518995, 0.89, 0.673, 0.89)
 mesh = SubResource("BoxMesh_viuc7")
 
-[node name="MeshInstance3D3" type="MeshInstance3D" parent="room/control_panel/horizontal_control" unique_id=2141606902]
+[node name="MeshInstance3D3" type="MeshInstance3D" parent="game/room/control_panel/horizontal_control" unique_id=2141606902]
 transform = Transform3D(-2.1855675e-08, 0, 0.9999999, 0, 0.49999994, 0, -0.49999955, 0, -4.3711385e-08, 0.91, 0.673, 0)
 mesh = SubResource("BoxMesh_viuc7")
 
-[node name="MeshInstance3D5" type="MeshInstance3D" parent="room/control_panel/horizontal_control" unique_id=2098949597]
+[node name="MeshInstance3D5" type="MeshInstance3D" parent="game/room/control_panel/horizontal_control" unique_id=2098949597]
 transform = Transform3D(-2.1855675e-08, 0, 0.9999999, 0, 0.49999994, 0, -0.49999955, 0, -4.3711385e-08, 0, 0.673, 1.37)
 mesh = SubResource("BoxMesh_viuc7")
 
-[node name="MeshInstance3D6" type="MeshInstance3D" parent="room/control_panel/horizontal_control" unique_id=1956315792]
+[node name="MeshInstance3D6" type="MeshInstance3D" parent="game/room/control_panel/horizontal_control" unique_id=1956315792]
 transform = Transform3D(-2.1855675e-08, 0, 0.9999999, 0, 0.49999994, 0, -0.49999955, 0, -4.3711385e-08, 0, 0.673, -1.37)
 mesh = SubResource("BoxMesh_viuc7")
 
-[node name="MeshInstance3D4" type="MeshInstance3D" parent="room/control_panel/horizontal_control" unique_id=1251950483]
+[node name="MeshInstance3D4" type="MeshInstance3D" parent="game/room/control_panel/horizontal_control" unique_id=1251950483]
 transform = Transform3D(-2.1855675e-08, 0, 0.9999999, 0, 0.49999994, 0, -0.49999955, 0, -4.3711385e-08, -0.91, 0.673, 0)
 mesh = SubResource("BoxMesh_viuc7")
 
-[node name="vertiacl_control" type="MeshInstance3D" parent="room/control_panel" unique_id=715857283]
+[node name="StaticBody3D" type="StaticBody3D" parent="game/room/control_panel/horizontal_control" unique_id=2030781188]
+collision_layer = 2
+collision_mask = 2
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="game/room/control_panel/horizontal_control/StaticBody3D" unique_id=1310758126]
+transform = Transform3D(0.99998236, 0, 0, 0, 0.9999999, -1.4901161e-07, 0, 1.4901161e-07, 0.9999999, 0, 0, 0)
+shape = SubResource("CylinderShape3D_yk2f3")
+
+[node name="vertical_control" type="MeshInstance3D" parent="game/room/control_panel" unique_id=715857283]
 unique_name_in_owner = true
 transform = Transform3D(0.1, 0, 0, 0, 0.08642748, -0.050301995, 0, 0.050301995, 0.08642748, 0.955, 0.865, 0.747)
 mesh = SubResource("CylinderMesh_yu6ao")
+script = ExtResource("4_yu6ao")
 
-[node name="MeshInstance3D" type="MeshInstance3D" parent="room/control_panel/vertiacl_control" unique_id=101683357]
+[node name="MeshInstance3D" type="MeshInstance3D" parent="game/room/control_panel/vertical_control" unique_id=101683357]
 transform = Transform3D(0.49999958, 0, 0, 0, 0.49999994, -2.9802322e-08, 0, 1.4901161e-08, 0.9999999, 0, 0.673, -0.91)
 mesh = SubResource("BoxMesh_viuc7")
 
-[node name="MeshInstance3D2" type="MeshInstance3D" parent="room/control_panel/vertiacl_control" unique_id=691264877]
+[node name="MeshInstance3D2" type="MeshInstance3D" parent="game/room/control_panel/vertical_control" unique_id=691264877]
 transform = Transform3D(0.49999958, 0, 0, 0, 0.49999994, -2.9802322e-08, 0, 1.4901161e-08, 0.9999999, 0, 0.673, 0.91)
 mesh = SubResource("BoxMesh_viuc7")
 
-[node name="MeshInstance3D7" type="MeshInstance3D" parent="room/control_panel/vertiacl_control" unique_id=343322279]
+[node name="MeshInstance3D7" type="MeshInstance3D" parent="game/room/control_panel/vertical_control" unique_id=343322279]
 transform = Transform3D(0.49999952, 0, 0, 0, 0.49999994, -2.9802322e-08, 0, 1.4901161e-08, 0.9999999, 1.37, 0.673, 0)
 mesh = SubResource("BoxMesh_viuc7")
 
-[node name="MeshInstance3D8" type="MeshInstance3D" parent="room/control_panel/vertiacl_control" unique_id=523265993]
+[node name="MeshInstance3D8" type="MeshInstance3D" parent="game/room/control_panel/vertical_control" unique_id=523265993]
 transform = Transform3D(0.49999952, 0, 0, 0, 0.49999994, -2.9802322e-08, 0, 1.4901161e-08, 0.9999999, -1.37, 0.673, 0)
 mesh = SubResource("BoxMesh_viuc7")
 
-[node name="MeshInstance3D9" type="MeshInstance3D" parent="room/control_panel/vertiacl_control" unique_id=1004098798]
+[node name="MeshInstance3D9" type="MeshInstance3D" parent="game/room/control_panel/vertical_control" unique_id=1004098798]
 transform = Transform3D(0.35662523, 0, 1.1319685, 0, 0.5, 0, -0.35045463, 0, 1.1518995, -0.89, 0.673, 0.89)
 mesh = SubResource("BoxMesh_viuc7")
 
-[node name="MeshInstance3D10" type="MeshInstance3D" parent="room/control_panel/vertiacl_control" unique_id=2107885195]
+[node name="MeshInstance3D10" type="MeshInstance3D" parent="game/room/control_panel/vertical_control" unique_id=2107885195]
 transform = Transform3D(0.35662523, 0, 1.1319685, 0, 0.5, 0, -0.35045463, 0, 1.1518995, 0.89, 0.673, -0.89)
 mesh = SubResource("BoxMesh_viuc7")
 
-[node name="MeshInstance3D11" type="MeshInstance3D" parent="room/control_panel/vertiacl_control" unique_id=406165917]
+[node name="MeshInstance3D11" type="MeshInstance3D" parent="game/room/control_panel/vertical_control" unique_id=406165917]
 transform = Transform3D(0.35662523, 0, -1.1319685, 0, 0.5, 0, 0.35045463, 0, 1.1518995, -0.89, 0.673, -0.89)
 mesh = SubResource("BoxMesh_viuc7")
 
-[node name="MeshInstance3D12" type="MeshInstance3D" parent="room/control_panel/vertiacl_control" unique_id=843664009]
+[node name="MeshInstance3D12" type="MeshInstance3D" parent="game/room/control_panel/vertical_control" unique_id=843664009]
 transform = Transform3D(0.35662523, 0, -1.1319685, 0, 0.5, 0, 0.35045463, 0, 1.1518995, 0.89, 0.673, 0.89)
 mesh = SubResource("BoxMesh_viuc7")
 
-[node name="MeshInstance3D3" type="MeshInstance3D" parent="room/control_panel/vertiacl_control" unique_id=2062198897]
+[node name="MeshInstance3D3" type="MeshInstance3D" parent="game/room/control_panel/vertical_control" unique_id=2062198897]
 transform = Transform3D(-2.1855675e-08, 0, 0.9999999, 0, 0.49999994, 0, -0.49999955, 0, -4.3711385e-08, 0.91, 0.673, 0)
 mesh = SubResource("BoxMesh_viuc7")
 
-[node name="MeshInstance3D5" type="MeshInstance3D" parent="room/control_panel/vertiacl_control" unique_id=863022945]
+[node name="MeshInstance3D5" type="MeshInstance3D" parent="game/room/control_panel/vertical_control" unique_id=863022945]
 transform = Transform3D(-2.1855675e-08, 0, 0.9999999, 0, 0.49999994, 0, -0.49999955, 0, -4.3711385e-08, 0, 0.673, 1.37)
 mesh = SubResource("BoxMesh_viuc7")
 
-[node name="MeshInstance3D6" type="MeshInstance3D" parent="room/control_panel/vertiacl_control" unique_id=230991457]
+[node name="MeshInstance3D6" type="MeshInstance3D" parent="game/room/control_panel/vertical_control" unique_id=230991457]
 transform = Transform3D(-2.1855675e-08, 0, 0.9999999, 0, 0.49999994, 0, -0.49999955, 0, -4.3711385e-08, 0, 0.673, -1.37)
 mesh = SubResource("BoxMesh_viuc7")
 
-[node name="MeshInstance3D4" type="MeshInstance3D" parent="room/control_panel/vertiacl_control" unique_id=532184611]
+[node name="MeshInstance3D4" type="MeshInstance3D" parent="game/room/control_panel/vertical_control" unique_id=532184611]
 transform = Transform3D(-2.1855675e-08, 0, 0.9999999, 0, 0.49999994, 0, -0.49999955, 0, -4.3711385e-08, -0.91, 0.673, 0)
 mesh = SubResource("BoxMesh_viuc7")
 
-[node name="wind_info_screen" type="MeshInstance3D" parent="room/control_panel" unique_id=2093446499]
+[node name="StaticBody3D" type="StaticBody3D" parent="game/room/control_panel/vertical_control" unique_id=371275716]
+collision_layer = 2
+collision_mask = 2
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="game/room/control_panel/vertical_control/StaticBody3D" unique_id=1315345992]
+transform = Transform3D(0.99999464, 0, 0, 0, 0.9999999, -2.9802322e-08, 0, 2.9802322e-08, 0.9999999, 0, 0, 0)
+shape = SubResource("CylinderShape3D_yu6ao")
+
+[node name="wind_info_screen" type="MeshInstance3D" parent="game/room/control_panel" unique_id=2093446499]
 transform = Transform3D(1.6407814, 0, 0, 0, 0.0075189234, -0.3906375, 0, 0.0043761176, 0.6711824, -1.2497122, 1.0002168, 0.31504488)
 mesh = SubResource("BoxMesh_xsmdc")
 surface_material_override/0 = SubResource("StandardMaterial3D_cwcgk")
 
-[node name="wind_info_label" type="Label3D" parent="room/control_panel/wind_info_screen" unique_id=1829711592]
+[node name="wind_info_label" type="Label3D" parent="game/room/control_panel/wind_info_screen" unique_id=1829711592]
 unique_name_in_owner = true
 transform = Transform3D(1.0000008, 0, 0, 0, -0.092308044, 0.99573135, 0, -0.9957304, -0.09230969, -0.4405601, 2.3013458, 0.04430008)
 modulate = Color(0, 0.4509804, 0, 1)
@@ -425,32 +485,36 @@ font_size = 12
 outline_size = 4
 horizontal_alignment = 0
 
-[node name="mission_info_screen" type="MeshInstance3D" parent="room/control_panel" unique_id=902446263]
+[node name="mission_info_screen" type="MeshInstance3D" parent="game/room/control_panel" unique_id=902446263]
 transform = Transform3D(1.6407814, 0, 0, 0, 0.0075189234, -0.3906375, 0, 0.0043761176, 0.6711824, 2.1832294, 1.0002168, 0.31504488)
 mesh = SubResource("BoxMesh_xsmdc")
 surface_material_override/0 = SubResource("StandardMaterial3D_cwcgk")
 
-[node name="mission_info_label" type="Label3D" parent="room/control_panel/mission_info_screen" unique_id=1086479391]
+[node name="mission_info_label" type="Label3D" parent="game/room/control_panel/mission_info_screen" unique_id=1086479391]
 unique_name_in_owner = true
-transform = Transform3D(1.0000012, 0, 0, 0, -0.09231186, 0.9957316, 0, -0.9957305, -0.09230969, -0.44056022, 1.7142944, -0.28642464)
+transform = Transform3D(1.000002, 0, 0, 0, -0.09231186, 0.9957316, 0, -0.9957305, -0.09230969, -0.44056022, 0.58309937, -0.19295168)
 modulate = Color(0, 0.4509804, 0, 1)
 text = "Target: Subway 1f
 Grid Coordinates: 12M 14W
 Vertical Angle: 45
 Horizontal Angle: 52
 Ammuniciton type: cluster
+Intelligence Officer: 
+D. Kasparov
+Fire Control Specialist: 
+V. Blagoev
 "
 font = ExtResource("3_dvvjl")
 font_size = 12
 outline_size = 4
 horizontal_alignment = 0
 
-[node name="targeting_info_screen" type="MeshInstance3D" parent="room/control_panel" unique_id=1055291325]
+[node name="targeting_info_screen" type="MeshInstance3D" parent="game/room/control_panel" unique_id=1055291325]
 transform = Transform3D(1.686, 0, 0, 0, 0.007778473, -0.29527268, 0, 0.0045271786, 0.50732934, 0.45459867, 1.0474541, 0.23096228)
 mesh = SubResource("BoxMesh_xsmdc")
 surface_material_override/0 = SubResource("StandardMaterial3D_cwcgk")
 
-[node name="horizontal_angle_label" type="Label3D" parent="room/control_panel/targeting_info_screen" unique_id=939678399]
+[node name="horizontal_angle_label" type="Label3D" parent="game/room/control_panel/targeting_info_screen" unique_id=939678399]
 unique_name_in_owner = true
 transform = Transform3D(0.9729732, 0.0010094212, -0.019946124, 0.020089326, -0.08919144, 0.96230197, -0.0001792681, -1.3173232, -0.122121274, -0.427, 0.59, -0.326)
 modulate = Color(0, 0.4509804, 0, 1)
@@ -461,7 +525,7 @@ font_size = 12
 outline_size = 4
 horizontal_alignment = 0
 
-[node name="vertical_angle_label" type="Label3D" parent="room/control_panel/targeting_info_screen" unique_id=2137153996]
+[node name="vertical_angle_label" type="Label3D" parent="game/room/control_panel/targeting_info_screen" unique_id=2137153996]
 unique_name_in_owner = true
 transform = Transform3D(0.97318065, 0, 0, 0, -0.08918381, 0.9625063, 0, -1.3173232, -0.12212311, -0.425, 0.591, -0.097)
 modulate = Color(0, 0.4509804, 0, 1)
@@ -472,7 +536,7 @@ font_size = 12
 outline_size = 4
 horizontal_alignment = 0
 
-[node name="projected_impact_location_label" type="Label3D" parent="room/control_panel/targeting_info_screen" unique_id=523279501]
+[node name="projected_impact_location_label" type="Label3D" parent="game/room/control_panel/targeting_info_screen" unique_id=523279501]
 unique_name_in_owner = true
 transform = Transform3D(0.97318137, 0, 0, 0, -0.08918381, 0.9625063, 0, -1.3173232, -0.12212311, -0.42567754, 0.96369934, 0.12892199)
 modulate = Color(0, 0.4509804, 0, 1)
@@ -483,38 +547,48 @@ font_size = 12
 outline_size = 4
 horizontal_alignment = 0
 
-[node name="StaticBody3D" type="StaticBody3D" parent="room/control_panel" unique_id=1785570402]
+[node name="StaticBody3D" type="StaticBody3D" parent="game/room/control_panel" unique_id=1785570402]
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="room/control_panel/StaticBody3D" unique_id=1938308079]
+[node name="CollisionShape3D" type="CollisionShape3D" parent="game/room/control_panel/StaticBody3D" unique_id=1938308079]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.23442078, 0.43813294, 0.5109749)
 shape = SubResource("BoxShape3D_yk2f3")
 
-[node name="Table" type="MeshInstance3D" parent="room" unique_id=1002427708]
+[node name="fire_button" type="MeshInstance3D" parent="game/room/control_panel" unique_id=2138189226]
+transform = Transform3D(0.1, 0, 0, 0, 0.08642748, -0.050301995, 0, 0.050301995, 0.08642748, 0.40687394, 0.7702818, 0.708478)
+mesh = SubResource("CylinderMesh_viuc7")
+surface_material_override/0 = SubResource("StandardMaterial3D_dburu")
+
+[node name="fire_button_cover" type="MeshInstance3D" parent="game/room/control_panel" unique_id=962523701]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.6772523, 1.0062819)
+mesh = SubResource("BoxMesh_8jppp")
+surface_material_override/0 = SubResource("StandardMaterial3D_bltve")
+
+[node name="Table" type="MeshInstance3D" parent="game/room" unique_id=1002427708]
 transform = Transform3D(1.3958035, 0, 0, 0, 0.057, 0, 0, 0, 3.059744, -5.3340445, 0.43999177, 0)
 mesh = SubResource("BoxMesh_r4s8j")
 surface_material_override/0 = SubResource("StandardMaterial3D_843qc")
 
-[node name="MeshInstance3D" type="MeshInstance3D" parent="room/Table" unique_id=1183600921]
+[node name="MeshInstance3D" type="MeshInstance3D" parent="game/room/Table" unique_id=1183600921]
 transform = Transform3D(-0.03271699, 0, 0, 0, 16.205288, 0, 0, 0, 0.01263669, 0.4795525, -7.8720446, 0.49183774)
 mesh = SubResource("BoxMesh_4g0d1")
 surface_material_override/0 = SubResource("StandardMaterial3D_843qc")
 
-[node name="MeshInstance3D2" type="MeshInstance3D" parent="room/Table" unique_id=1389010284]
+[node name="MeshInstance3D2" type="MeshInstance3D" parent="game/room/Table" unique_id=1389010284]
 transform = Transform3D(-0.03271699, 0, 0, 0, 16.205288, 0, 0, 0, 0.01263669, -0.46184802, -7.8720446, 0.4918377)
 mesh = SubResource("BoxMesh_4g0d1")
 surface_material_override/0 = SubResource("StandardMaterial3D_843qc")
 
-[node name="MeshInstance3D3" type="MeshInstance3D" parent="room/Table" unique_id=1942393570]
+[node name="MeshInstance3D3" type="MeshInstance3D" parent="game/room/Table" unique_id=1942393570]
 transform = Transform3D(-0.03271699, 0, 0, 0, 16.205288, 0, 0, 0, 0.01263669, -0.46184802, -7.8720446, -0.4912784)
 mesh = SubResource("BoxMesh_4g0d1")
 surface_material_override/0 = SubResource("StandardMaterial3D_843qc")
 
-[node name="MeshInstance3D4" type="MeshInstance3D" parent="room/Table" unique_id=1745080462]
+[node name="MeshInstance3D4" type="MeshInstance3D" parent="game/room/Table" unique_id=1745080462]
 transform = Transform3D(-0.03271699, 0, 0, 0, 16.205288, 0, 0, 0, 0.01263669, 0.4813378, -7.8720446, -0.49127835)
 mesh = SubResource("BoxMesh_4g0d1")
 surface_material_override/0 = SubResource("StandardMaterial3D_843qc")
 
-[node name="StaticBody3D" type="StaticBody3D" parent="room/Table" unique_id=1048396207]
+[node name="StaticBody3D" type="StaticBody3D" parent="game/room/Table" unique_id=1048396207]
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="room/Table/StaticBody3D" unique_id=1783981187]
+[node name="CollisionShape3D" type="CollisionShape3D" parent="game/room/Table/StaticBody3D" unique_id=1783981187]
 shape = SubResource("BoxShape3D_dvvjl")

@@ -1,13 +1,30 @@
 [gd_scene format=3 uid="uid://c31bneyhmsfje"]
 
 [ext_resource type="Script" uid="uid://dy835fd10ujp" path="res://Main Menu/main_menu.gd" id="1_vccqd"]
+[ext_resource type="FontFile" uid="uid://dwpltggtjler8" path="res://Common/Fonts/HomeVideo-BLG6G.ttf" id="2_nb5b5"]
+
+[sub_resource type="LabelSettings" id="LabelSettings_vccqd"]
+font = ExtResource("2_nb5b5")
+font_size = 25
 
 [sub_resource type="Theme" id="Theme_pqn6e"]
 
-[sub_resource type="LabelSettings" id="LabelSettings_vccqd"]
-font_size = 54
+[sub_resource type="LabelSettings" id="LabelSettings_8ketd"]
+font = ExtResource("2_nb5b5")
 
 [sub_resource type="Theme" id="Theme_nb5b5"]
+
+[sub_resource type="LabelSettings" id="LabelSettings_15lat"]
+font = ExtResource("2_nb5b5")
+
+[sub_resource type="LabelSettings" id="LabelSettings_60tkv"]
+font = ExtResource("2_nb5b5")
+
+[sub_resource type="LabelSettings" id="LabelSettings_npuod"]
+font = ExtResource("2_nb5b5")
+
+[sub_resource type="LabelSettings" id="LabelSettings_ft8e8"]
+font = ExtResource("2_nb5b5")
 
 [node name="Control" type="Control" unique_id=1255007190]
 layout_mode = 3
@@ -26,8 +43,24 @@ offset_bottom = -1.0
 grow_horizontal = 2
 grow_vertical = 2
 
+[node name="SplashScreenContainer" type="MarginContainer" parent="main_menu_container" unique_id=1030243718]
+unique_name_in_owner = true
+layout_mode = 2
+theme_override_constants/margin_top = 45
+theme_override_constants/margin_bottom = 45
+
+[node name="Label" type="Label" parent="main_menu_container/SplashScreenContainer" unique_id=304823034]
+layout_mode = 2
+text = "Never attribute to malice that which is adequately explained by stupidity.
+-Robert J. Hanlon"
+label_settings = SubResource("LabelSettings_vccqd")
+horizontal_alignment = 1
+vertical_alignment = 1
+autowrap_mode = 1
+
 [node name="MainMenuContainer" type="MarginContainer" parent="main_menu_container" unique_id=1755636428]
 unique_name_in_owner = true
+visible = false
 layout_mode = 2
 theme_override_constants/margin_top = 45
 theme_override_constants/margin_bottom = 45
@@ -55,16 +88,19 @@ theme_override_constants/separation = 17
 [node name="start_button" type="Button" parent="main_menu_container/MainMenuContainer/VBoxContainer/MarginContainer/VBoxContainer" unique_id=555416877]
 unique_name_in_owner = true
 layout_mode = 2
+theme_override_fonts/font = ExtResource("2_nb5b5")
 text = "Start"
 
 [node name="options_button" type="Button" parent="main_menu_container/MainMenuContainer/VBoxContainer/MarginContainer/VBoxContainer" unique_id=2085808517]
 unique_name_in_owner = true
 layout_mode = 2
+theme_override_fonts/font = ExtResource("2_nb5b5")
 text = "Options"
 
 [node name="credits_button" type="Button" parent="main_menu_container/MainMenuContainer/VBoxContainer/MarginContainer/VBoxContainer" unique_id=792445840]
 unique_name_in_owner = true
 layout_mode = 2
+theme_override_fonts/font = ExtResource("2_nb5b5")
 text = "Credits"
 
 [node name="OptionsContainer" type="MarginContainer" parent="main_menu_container" unique_id=713287764]
@@ -99,7 +135,8 @@ layout_mode = 2
 
 [node name="Label" type="Label" parent="main_menu_container/OptionsContainer/VBoxContainer/MarginContainer/VBoxContainer/HBoxContainer" unique_id=988581454]
 layout_mode = 2
-text = "Music Volume "
+text = "Music Volume  "
+label_settings = SubResource("LabelSettings_8ketd")
 
 [node name="music_slider" type="HSlider" parent="main_menu_container/OptionsContainer/VBoxContainer/MarginContainer/VBoxContainer/HBoxContainer" unique_id=1832821551]
 unique_name_in_owner = true
@@ -115,6 +152,7 @@ layout_mode = 2
 [node name="Label" type="Label" parent="main_menu_container/OptionsContainer/VBoxContainer/MarginContainer/VBoxContainer/HBoxContainer2" unique_id=1448526399]
 layout_mode = 2
 text = "Effects Volume"
+label_settings = SubResource("LabelSettings_15lat")
 
 [node name="effects_slider" type="HSlider" parent="main_menu_container/OptionsContainer/VBoxContainer/MarginContainer/VBoxContainer/HBoxContainer2" unique_id=755145078]
 unique_name_in_owner = true
@@ -133,6 +171,7 @@ theme_override_constants/margin_right = 80
 [node name="options_back_buton" type="Button" parent="main_menu_container/OptionsContainer/VBoxContainer/MarginContainer2" unique_id=590535746]
 unique_name_in_owner = true
 layout_mode = 2
+theme_override_fonts/font = ExtResource("2_nb5b5")
 text = "BACK"
 
 [node name="CreditsContainer" type="MarginContainer" parent="main_menu_container" unique_id=1555008860]
@@ -165,14 +204,22 @@ theme_override_constants/separation = 6
 [node name="Label" type="Label" parent="main_menu_container/CreditsContainer/VBoxContainer/MarginContainer/VBoxContainer" unique_id=2087021802]
 layout_mode = 2
 text = "Game Design, Programming - Nikolay Staykov"
+label_settings = SubResource("LabelSettings_60tkv")
 
 [node name="Label2" type="Label" parent="main_menu_container/CreditsContainer/VBoxContainer/MarginContainer/VBoxContainer" unique_id=1271193017]
 layout_mode = 2
 text = "Music - <Populate when adding music>"
+label_settings = SubResource("LabelSettings_npuod")
 
 [node name="Label3" type="Label" parent="main_menu_container/CreditsContainer/VBoxContainer/MarginContainer/VBoxContainer" unique_id=351688415]
 layout_mode = 2
 text = "Sound Effects - <Populate when adding sound effects>"
+label_settings = SubResource("LabelSettings_ft8e8")
+
+[node name="Label4" type="Label" parent="main_menu_container/CreditsContainer/VBoxContainer/MarginContainer/VBoxContainer" unique_id=317440101]
+layout_mode = 2
+text = "Font - HOME Video By GGBOTNET"
+label_settings = SubResource("LabelSettings_ft8e8")
 
 [node name="MarginContainer2" type="MarginContainer" parent="main_menu_container/CreditsContainer/VBoxContainer" unique_id=1708937265]
 layout_mode = 2
@@ -182,6 +229,7 @@ theme_override_constants/margin_right = 80
 
 [node name="CreditsBackButton" type="Button" parent="main_menu_container/CreditsContainer/VBoxContainer/MarginContainer2" unique_id=1009200347]
 layout_mode = 2
+theme_override_fonts/font = ExtResource("2_nb5b5")
 text = "Back"
 
 [connection signal="pressed" from="main_menu_container/MainMenuContainer/VBoxContainer/MarginContainer/VBoxContainer/start_button" to="." method="_on_start_button_pressed"]
