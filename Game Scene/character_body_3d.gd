@@ -5,15 +5,17 @@ const SPEED = 5.0
 const JUMP_VELOCITY = 4.5
 var camera : Camera3D
 var look_direction: Vector2
+var controls_disabled: bool = false
 
 func _ready() -> void:
 	camera = %Camera3D
 	Input.mouse_mode = Input.MOUSE_MODE_CAPTURED
 
 func _physics_process(delta: float) -> void:
+	if controls_disabled:
+		return
+		
 	if Input.is_action_just_pressed("pause"):
-		get_tree().paused = !get_tree().paused
-		##toggle_pause_ui()
 		if Input.mouse_mode == Input.MOUSE_MODE_CAPTURED:
 			Input.mouse_mode = Input.MOUSE_MODE_VISIBLE
 		else: 

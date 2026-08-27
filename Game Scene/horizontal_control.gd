@@ -17,3 +17,6 @@ func change_value(val: int) -> void:
 	current_value+=val
 	%horizontal_angle_label.text = "Horizontal Angle: " + str(current_value)
 	%game.update_projected_impact_label(current_value, %vertical_control.current_value)
+
+func get_tooltip() -> String:
+	return "Horizontal Control Valve: left click -> turn left, right click -> turn right"

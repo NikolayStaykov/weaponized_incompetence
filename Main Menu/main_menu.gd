@@ -4,6 +4,11 @@ extends Control
 func _ready() -> void:
 	%music_slider.value = GlobalVars.music_volume
 	%effects_slider.value = GlobalVars.sound_effect_volume
+	Input.mouse_mode = Input.MouseMode.MOUSE_MODE_VISIBLE
+	if GlobalVars.intro_shown:
+		return
+	%SplashScreenContainer.visible = true
+	%MainMenuContainer.visible = false
 	get_tree().create_timer(4, true).connect("timeout", hide_splash_screen)
 
 
@@ -42,5 +47,6 @@ func _on_start_button_pressed() -> void:
 	get_tree().change_scene_to_file("res://Game Scene/Game.tscn")
 
 func hide_splash_screen() -> void:
+	GlobalVars.intro_shown = true
 	%SplashScreenContainer.visible = false
 	%MainMenuContainer.visible = true

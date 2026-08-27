@@ -45,6 +45,7 @@ grow_vertical = 2
 
 [node name="SplashScreenContainer" type="MarginContainer" parent="main_menu_container" unique_id=1030243718]
 unique_name_in_owner = true
+visible = false
 layout_mode = 2
 theme_override_constants/margin_top = 45
 theme_override_constants/margin_bottom = 45
@@ -60,7 +61,6 @@ autowrap_mode = 1
 
 [node name="MainMenuContainer" type="MarginContainer" parent="main_menu_container" unique_id=1755636428]
 unique_name_in_owner = true
-visible = false
 layout_mode = 2
 theme_override_constants/margin_top = 45
 theme_override_constants/margin_bottom = 45
