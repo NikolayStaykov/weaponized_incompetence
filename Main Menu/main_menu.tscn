@@ -3,6 +3,7 @@
 [ext_resource type="Script" uid="uid://dy835fd10ujp" path="res://Main Menu/main_menu.gd" id="1_vccqd"]
 [ext_resource type="Texture2D" uid="uid://o53o8mihjhxn" path="res://Main Menu/textures/Capture6.PNG" id="2_8ketd"]
 [ext_resource type="FontFile" uid="uid://dwpltggtjler8" path="res://Common/Fonts/HomeVideo-BLG6G.ttf" id="2_nb5b5"]
+[ext_resource type="AudioStream" uid="uid://fseax8cwfxkh" path="res://Main Menu/sound/main_menu_bgm.wav" id="4_15lat"]
 
 [sub_resource type="LabelSettings" id="LabelSettings_vccqd"]
 font = ExtResource("2_nb5b5")
@@ -27,14 +28,16 @@ font = ExtResource("2_nb5b5")
 [sub_resource type="LabelSettings" id="LabelSettings_ft8e8"]
 font = ExtResource("2_nb5b5")
 
-[node name="Control" type="Control" unique_id=1255007190]
+[node name="Camera3D" type="Camera3D" unique_id=1735358771]
+
+[node name="Control" type="Control" parent="." unique_id=1255007190]
 layout_mode = 3
 anchor_right = 1.001
 anchor_bottom = 1.0
 offset_right = -0.15209961
 script = ExtResource("1_vccqd")
 
-[node name="Panel" type="Panel" parent="." unique_id=931228927]
+[node name="Panel" type="Panel" parent="Control" unique_id=931228927]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -43,12 +46,12 @@ offset_right = -2.0
 grow_horizontal = 2
 grow_vertical = 2
 
-[node name="Sprite2D" type="Sprite2D" parent="Panel" unique_id=444449476]
+[node name="Sprite2D" type="Sprite2D" parent="Control/Panel" unique_id=444449476]
 position = Vector2(574, 323.75)
 scale = Vector2(1.0286225, 1.0447154)
 texture = ExtResource("2_8ketd")
 
-[node name="main_menu_container" type="PanelContainer" parent="." unique_id=591828207]
+[node name="main_menu_container" type="PanelContainer" parent="Control" unique_id=591828207]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -58,14 +61,14 @@ offset_bottom = -1.0
 grow_horizontal = 2
 grow_vertical = 2
 
-[node name="SplashScreenContainer" type="MarginContainer" parent="main_menu_container" unique_id=1030243718]
+[node name="SplashScreenContainer" type="MarginContainer" parent="Control/main_menu_container" unique_id=1030243718]
 unique_name_in_owner = true
 visible = false
 layout_mode = 2
 theme_override_constants/margin_top = 45
 theme_override_constants/margin_bottom = 45
 
-[node name="Label" type="Label" parent="main_menu_container/SplashScreenContainer" unique_id=304823034]
+[node name="Label" type="Label" parent="Control/main_menu_container/SplashScreenContainer" unique_id=304823034]
 layout_mode = 2
 text = "Never attribute to malice that which is adequately explained by stupidity.
 -Robert J. Hanlon"
@@ -74,183 +77,202 @@ horizontal_alignment = 1
 vertical_alignment = 1
 autowrap_mode = 1
 
-[node name="MainMenuContainer" type="MarginContainer" parent="main_menu_container" unique_id=1755636428]
+[node name="MainMenuContainer" type="MarginContainer" parent="Control/main_menu_container" unique_id=1755636428]
 unique_name_in_owner = true
 layout_mode = 2
 theme_override_constants/margin_top = 45
 theme_override_constants/margin_bottom = 45
 
-[node name="VBoxContainer" type="VBoxContainer" parent="main_menu_container/MainMenuContainer" unique_id=1691192630]
+[node name="VBoxContainer" type="VBoxContainer" parent="Control/main_menu_container/MainMenuContainer" unique_id=1691192630]
 layout_mode = 2
 theme = SubResource("Theme_pqn6e")
 theme_override_constants/separation = 145
 
-[node name="Label" type="Label" parent="main_menu_container/MainMenuContainer/VBoxContainer" unique_id=2044328917]
+[node name="Label" type="Label" parent="Control/main_menu_container/MainMenuContainer/VBoxContainer" unique_id=2044328917]
 layout_mode = 2
 text = "Weaponized Incompetence"
 label_settings = SubResource("LabelSettings_vccqd")
 horizontal_alignment = 1
 
-[node name="MarginContainer" type="MarginContainer" parent="main_menu_container/MainMenuContainer/VBoxContainer" unique_id=1932673598]
+[node name="MarginContainer" type="MarginContainer" parent="Control/main_menu_container/MainMenuContainer/VBoxContainer" unique_id=1932673598]
 layout_mode = 2
 theme_override_constants/margin_left = 445
 theme_override_constants/margin_right = 445
 
-[node name="VBoxContainer" type="VBoxContainer" parent="main_menu_container/MainMenuContainer/VBoxContainer/MarginContainer" unique_id=638159213]
+[node name="VBoxContainer" type="VBoxContainer" parent="Control/main_menu_container/MainMenuContainer/VBoxContainer/MarginContainer" unique_id=638159213]
 layout_mode = 2
 theme_override_constants/separation = 17
 
-[node name="start_button" type="Button" parent="main_menu_container/MainMenuContainer/VBoxContainer/MarginContainer/VBoxContainer" unique_id=555416877]
+[node name="start_button" type="Button" parent="Control/main_menu_container/MainMenuContainer/VBoxContainer/MarginContainer/VBoxContainer" unique_id=555416877]
 unique_name_in_owner = true
 layout_mode = 2
 theme_override_fonts/font = ExtResource("2_nb5b5")
 text = "Start"
 
-[node name="options_button" type="Button" parent="main_menu_container/MainMenuContainer/VBoxContainer/MarginContainer/VBoxContainer" unique_id=2085808517]
+[node name="options_button" type="Button" parent="Control/main_menu_container/MainMenuContainer/VBoxContainer/MarginContainer/VBoxContainer" unique_id=2085808517]
 unique_name_in_owner = true
 layout_mode = 2
 theme_override_fonts/font = ExtResource("2_nb5b5")
 text = "Options"
 
-[node name="credits_button" type="Button" parent="main_menu_container/MainMenuContainer/VBoxContainer/MarginContainer/VBoxContainer" unique_id=792445840]
+[node name="credits_button" type="Button" parent="Control/main_menu_container/MainMenuContainer/VBoxContainer/MarginContainer/VBoxContainer" unique_id=792445840]
 unique_name_in_owner = true
 layout_mode = 2
 theme_override_fonts/font = ExtResource("2_nb5b5")
 text = "Credits"
 
-[node name="OptionsContainer" type="MarginContainer" parent="main_menu_container" unique_id=713287764]
+[node name="OptionsContainer" type="MarginContainer" parent="Control/main_menu_container" unique_id=713287764]
 unique_name_in_owner = true
 visible = false
 layout_mode = 2
 theme_override_constants/margin_top = 45
 theme_override_constants/margin_bottom = 45
 
-[node name="VBoxContainer" type="VBoxContainer" parent="main_menu_container/OptionsContainer" unique_id=987309494]
+[node name="VBoxContainer" type="VBoxContainer" parent="Control/main_menu_container/OptionsContainer" unique_id=987309494]
 layout_mode = 2
 theme = SubResource("Theme_pqn6e")
 theme_override_constants/separation = 145
 
-[node name="Label" type="Label" parent="main_menu_container/OptionsContainer/VBoxContainer" unique_id=1005586521]
+[node name="Label" type="Label" parent="Control/main_menu_container/OptionsContainer/VBoxContainer" unique_id=1005586521]
 layout_mode = 2
 text = "Options"
 label_settings = SubResource("LabelSettings_vccqd")
 horizontal_alignment = 1
 
-[node name="MarginContainer" type="MarginContainer" parent="main_menu_container/OptionsContainer/VBoxContainer" unique_id=1416301638]
+[node name="MarginContainer" type="MarginContainer" parent="Control/main_menu_container/OptionsContainer/VBoxContainer" unique_id=1416301638]
 layout_mode = 2
 theme_override_constants/margin_left = 66
 theme_override_constants/margin_right = 445
 
-[node name="VBoxContainer" type="VBoxContainer" parent="main_menu_container/OptionsContainer/VBoxContainer/MarginContainer" unique_id=790506389]
+[node name="VBoxContainer" type="VBoxContainer" parent="Control/main_menu_container/OptionsContainer/VBoxContainer/MarginContainer" unique_id=790506389]
 layout_mode = 2
 theme_override_constants/separation = 6
 
-[node name="HBoxContainer" type="HBoxContainer" parent="main_menu_container/OptionsContainer/VBoxContainer/MarginContainer/VBoxContainer" unique_id=102148099]
+[node name="HBoxContainer" type="HBoxContainer" parent="Control/main_menu_container/OptionsContainer/VBoxContainer/MarginContainer/VBoxContainer" unique_id=102148099]
 layout_mode = 2
 
-[node name="Label" type="Label" parent="main_menu_container/OptionsContainer/VBoxContainer/MarginContainer/VBoxContainer/HBoxContainer" unique_id=988581454]
+[node name="Label" type="Label" parent="Control/main_menu_container/OptionsContainer/VBoxContainer/MarginContainer/VBoxContainer/HBoxContainer" unique_id=988581454]
 layout_mode = 2
 text = "Music Volume  "
 label_settings = SubResource("LabelSettings_8ketd")
 
-[node name="music_slider" type="HSlider" parent="main_menu_container/OptionsContainer/VBoxContainer/MarginContainer/VBoxContainer/HBoxContainer" unique_id=1832821551]
+[node name="music_slider" type="HSlider" parent="Control/main_menu_container/OptionsContainer/VBoxContainer/MarginContainer/VBoxContainer/HBoxContainer" unique_id=1832821551]
 unique_name_in_owner = true
 layout_mode = 2
 size_flags_horizontal = 3
 theme = SubResource("Theme_nb5b5")
-max_value = 1.0
-step = 0.01
+min_value = -40.0
+max_value = 0.0
 
-[node name="HBoxContainer2" type="HBoxContainer" parent="main_menu_container/OptionsContainer/VBoxContainer/MarginContainer/VBoxContainer" unique_id=1657805622]
+[node name="HBoxContainer2" type="HBoxContainer" parent="Control/main_menu_container/OptionsContainer/VBoxContainer/MarginContainer/VBoxContainer" unique_id=1657805622]
 layout_mode = 2
 
-[node name="Label" type="Label" parent="main_menu_container/OptionsContainer/VBoxContainer/MarginContainer/VBoxContainer/HBoxContainer2" unique_id=1448526399]
+[node name="Label" type="Label" parent="Control/main_menu_container/OptionsContainer/VBoxContainer/MarginContainer/VBoxContainer/HBoxContainer2" unique_id=1448526399]
 layout_mode = 2
 text = "Effects Volume"
 label_settings = SubResource("LabelSettings_15lat")
 
-[node name="effects_slider" type="HSlider" parent="main_menu_container/OptionsContainer/VBoxContainer/MarginContainer/VBoxContainer/HBoxContainer2" unique_id=755145078]
+[node name="effects_slider" type="HSlider" parent="Control/main_menu_container/OptionsContainer/VBoxContainer/MarginContainer/VBoxContainer/HBoxContainer2" unique_id=755145078]
 unique_name_in_owner = true
 layout_mode = 2
 size_flags_horizontal = 3
 theme = SubResource("Theme_nb5b5")
-max_value = 1.0
-step = 0.01
+min_value = -40.0
+max_value = 0.0
 
-[node name="MarginContainer2" type="MarginContainer" parent="main_menu_container/OptionsContainer/VBoxContainer" unique_id=410473042]
+[node name="MarginContainer2" type="MarginContainer" parent="Control/main_menu_container/OptionsContainer/VBoxContainer" unique_id=410473042]
 layout_mode = 2
 theme_override_constants/margin_left = 900
 theme_override_constants/margin_top = 110
 theme_override_constants/margin_right = 80
 
-[node name="options_back_buton" type="Button" parent="main_menu_container/OptionsContainer/VBoxContainer/MarginContainer2" unique_id=590535746]
+[node name="options_back_buton" type="Button" parent="Control/main_menu_container/OptionsContainer/VBoxContainer/MarginContainer2" unique_id=590535746]
 unique_name_in_owner = true
 layout_mode = 2
 theme_override_fonts/font = ExtResource("2_nb5b5")
 text = "BACK"
 
-[node name="CreditsContainer" type="MarginContainer" parent="main_menu_container" unique_id=1555008860]
+[node name="CreditsContainer" type="MarginContainer" parent="Control/main_menu_container" unique_id=1555008860]
 unique_name_in_owner = true
 visible = false
 layout_mode = 2
-theme_override_constants/margin_top = 0
+theme_override_constants/margin_top = 28
 theme_override_constants/margin_bottom = 0
 
-[node name="VBoxContainer" type="VBoxContainer" parent="main_menu_container/CreditsContainer" unique_id=432463425]
+[node name="VBoxContainer" type="VBoxContainer" parent="Control/main_menu_container/CreditsContainer" unique_id=432463425]
 layout_mode = 2
 theme = SubResource("Theme_pqn6e")
-theme_override_constants/separation = 145
+theme_override_constants/separation = 90
 
-[node name="Label" type="Label" parent="main_menu_container/CreditsContainer/VBoxContainer" unique_id=1222453939]
+[node name="Label" type="Label" parent="Control/main_menu_container/CreditsContainer/VBoxContainer" unique_id=1222453939]
 layout_mode = 2
 text = "Credits"
 label_settings = SubResource("LabelSettings_vccqd")
 horizontal_alignment = 1
 
-[node name="MarginContainer" type="MarginContainer" parent="main_menu_container/CreditsContainer/VBoxContainer" unique_id=1779148354]
+[node name="MarginContainer" type="MarginContainer" parent="Control/main_menu_container/CreditsContainer/VBoxContainer" unique_id=1779148354]
 layout_mode = 2
-theme_override_constants/margin_left = 66
-theme_override_constants/margin_right = 445
+theme_override_constants/margin_left = 30
+theme_override_constants/margin_right = 0
 
-[node name="VBoxContainer" type="VBoxContainer" parent="main_menu_container/CreditsContainer/VBoxContainer/MarginContainer" unique_id=829238226]
+[node name="VBoxContainer" type="VBoxContainer" parent="Control/main_menu_container/CreditsContainer/VBoxContainer/MarginContainer" unique_id=829238226]
 layout_mode = 2
 theme_override_constants/separation = 6
 
-[node name="Label" type="Label" parent="main_menu_container/CreditsContainer/VBoxContainer/MarginContainer/VBoxContainer" unique_id=2087021802]
+[node name="Label" type="Label" parent="Control/main_menu_container/CreditsContainer/VBoxContainer/MarginContainer/VBoxContainer" unique_id=2087021802]
 layout_mode = 2
-text = "Game Design, Programming - Nikolay Staykov"
+text = "Game Design, Programming: Nikolay Staykov"
 label_settings = SubResource("LabelSettings_60tkv")
 
-[node name="Label2" type="Label" parent="main_menu_container/CreditsContainer/VBoxContainer/MarginContainer/VBoxContainer" unique_id=1271193017]
+[node name="Label2" type="Label" parent="Control/main_menu_container/CreditsContainer/VBoxContainer/MarginContainer/VBoxContainer" unique_id=1271193017]
 layout_mode = 2
-text = "Music - <Populate when adding music>"
+text = "Music: \"The Escalation\" Kevin MacLeod (incompetech.com)
+-- LICENSe: Attribution 4.0"
 label_settings = SubResource("LabelSettings_npuod")
 
-[node name="Label3" type="Label" parent="main_menu_container/CreditsContainer/VBoxContainer/MarginContainer/VBoxContainer" unique_id=351688415]
+[node name="Label3" type="Label" parent="Control/main_menu_container/CreditsContainer/VBoxContainer/MarginContainer/VBoxContainer" unique_id=351688415]
 layout_mode = 2
-text = "Sound Effects - <Populate when adding sound effects>"
+text = "Sound Effects: 
+Trumpet valve (SoundAction 166) by alexarje 
+-- https://freesound.org/s/863144/ -- License: Attribution 4.0
+METLFric-Samsung Galaxy Smartphone, CU_Valve Squeaks_Nicholas Judy_TDC by designerschoice 
+-- https://freesound.org/s/808874/ -- License: Attribution 4.0
+turn the page.wav by D.jones 
+-- https://freesound.org/s/521114/ -- License: Attribution 3.0
+guitar-pickup-amp-crt-neon-light-noise.wav by DrNI 
+-- https://freesound.org/s/27789/ -- License: Creative Commons 0"
 label_settings = SubResource("LabelSettings_ft8e8")
 
-[node name="Label4" type="Label" parent="main_menu_container/CreditsContainer/VBoxContainer/MarginContainer/VBoxContainer" unique_id=317440101]
+[node name="Label4" type="Label" parent="Control/main_menu_container/CreditsContainer/VBoxContainer/MarginContainer/VBoxContainer" unique_id=317440101]
 layout_mode = 2
-text = "Font - HOME Video By GGBOTNET"
+text = "Font: HOME Video By GGBOTNET
+-- LIcense: Creative Commons Zero v1.0 Universal"
 label_settings = SubResource("LabelSettings_ft8e8")
 
-[node name="MarginContainer2" type="MarginContainer" parent="main_menu_container/CreditsContainer/VBoxContainer" unique_id=1708937265]
+[node name="MarginContainer2" type="MarginContainer" parent="Control/main_menu_container/CreditsContainer/VBoxContainer" unique_id=1708937265]
 layout_mode = 2
 theme_override_constants/margin_left = 900
 theme_override_constants/margin_top = 110
 theme_override_constants/margin_right = 80
 
-[node name="CreditsBackButton" type="Button" parent="main_menu_container/CreditsContainer/VBoxContainer/MarginContainer2" unique_id=1009200347]
+[node name="CreditsBackButton" type="Button" parent="Control/main_menu_container/CreditsContainer/VBoxContainer/MarginContainer2" unique_id=1009200347]
 layout_mode = 2
 theme_override_fonts/font = ExtResource("2_nb5b5")
 text = "Back"
 
-[connection signal="pressed" from="main_menu_container/MainMenuContainer/VBoxContainer/MarginContainer/VBoxContainer/start_button" to="." method="_on_start_button_pressed"]
-[connection signal="pressed" from="main_menu_container/MainMenuContainer/VBoxContainer/MarginContainer/VBoxContainer/options_button" to="." method="_on_options_button_pressed"]
-[connection signal="pressed" from="main_menu_container/MainMenuContainer/VBoxContainer/MarginContainer/VBoxContainer/credits_button" to="." method="_on_credits_button_pressed"]
-[connection signal="value_changed" from="main_menu_container/OptionsContainer/VBoxContainer/MarginContainer/VBoxContainer/HBoxContainer/music_slider" to="." method="_on_music_slider_value_changed"]
-[connection signal="value_changed" from="main_menu_container/OptionsContainer/VBoxContainer/MarginContainer/VBoxContainer/HBoxContainer2/effects_slider" to="." method="_on_effects_slider_value_changed"]
-[connection signal="pressed" from="main_menu_container/OptionsContainer/VBoxContainer/MarginContainer2/options_back_buton" to="." method="_on_options_back_buton_pressed"]
-[connection signal="pressed" from="main_menu_container/CreditsContainer/VBoxContainer/MarginContainer2/CreditsBackButton" to="." method="_on_credits_back_button_pressed"]
+[node name="bgm" type="AudioStreamPlayer3D" parent="Control" unique_id=1112168929]
+unique_name_in_owner = true
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -3.803537)
+stream = ExtResource("4_15lat")
+attenuation_model = 3
+autoplay = true
+
+[node name="AudioListener3D" type="AudioListener3D" parent="Control" unique_id=209261087]
+
+[connection signal="pressed" from="Control/main_menu_container/MainMenuContainer/VBoxContainer/MarginContainer/VBoxContainer/start_button" to="Control" method="_on_start_button_pressed"]
+[connection signal="pressed" from="Control/main_menu_container/MainMenuContainer/VBoxContainer/MarginContainer/VBoxContainer/options_button" to="Control" method="_on_options_button_pressed"]
+[connection signal="pressed" from="Control/main_menu_container/MainMenuContainer/VBoxContainer/MarginContainer/VBoxContainer/credits_button" to="Control" method="_on_credits_button_pressed"]
+[connection signal="value_changed" from="Control/main_menu_container/OptionsContainer/VBoxContainer/MarginContainer/VBoxContainer/HBoxContainer/music_slider" to="Control" method="_on_music_slider_value_changed"]
+[connection signal="value_changed" from="Control/main_menu_container/OptionsContainer/VBoxContainer/MarginContainer/VBoxContainer/HBoxContainer2/effects_slider" to="Control" method="_on_effects_slider_value_changed"]
+[connection signal="pressed" from="Control/main_menu_container/OptionsContainer/VBoxContainer/MarginContainer2/options_back_buton" to="Control" method="_on_options_back_buton_pressed"]
+[connection signal="pressed" from="Control/main_menu_container/CreditsContainer/VBoxContainer/MarginContainer2/CreditsBackButton" to="Control" method="_on_credits_back_button_pressed"]

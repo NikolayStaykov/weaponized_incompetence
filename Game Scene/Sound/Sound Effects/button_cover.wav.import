@@ -1,0 +1,24 @@
+[remap]
+
+importer="wav"
+type="AudioStreamWAV"
+uid="uid://bonjfc85i70n7"
+path="res://.godot/imported/button_cover.wav-17ee1511f8419fe8c515b65094f48f99.sample"
+
+[deps]
+
+source_file="res://Game Scene/Sound/Sound Effects/button_cover.wav"
+dest_files=["res://.godot/imported/button_cover.wav-17ee1511f8419fe8c515b65094f48f99.sample"]
+
+[params]
+
+force/8_bit=false
+force/mono=false
+force/max_rate=false
+force/max_rate_hz=44100
+edit/trim=false
+edit/normalize=false
+edit/loop_mode=0
+edit/loop_begin=0
+edit/loop_end=-1
+compress/mode=2

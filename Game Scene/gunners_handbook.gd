@@ -5,6 +5,7 @@ func interact_1() -> void:
 	%UIContainer.visible = false
 	%HandbookContainer.visible = true
 	Input.mouse_mode = Input.MOUSE_MODE_VISIBLE
+	%handbook_sound.play()
 	
 func interact_2() -> void:
 	pass

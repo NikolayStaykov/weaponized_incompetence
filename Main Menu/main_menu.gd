@@ -11,7 +11,6 @@ func _ready() -> void:
 	%MainMenuContainer.visible = false
 	get_tree().create_timer(4, true).connect("timeout", hide_splash_screen)
 
-
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta: float) -> void:
 	pass
@@ -41,6 +40,7 @@ func _on_music_slider_value_changed(value: float) -> void:
 
 func _on_effects_slider_value_changed(value: float) -> void:
 	GlobalVars.sound_effect_volume = value
+	%bgm.volume_db = value
 
 
 func _on_start_button_pressed() -> void:

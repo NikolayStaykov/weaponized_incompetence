@@ -1,0 +1,24 @@
+[remap]
+
+importer="wav"
+type="AudioStreamWAV"
+uid="uid://cbpko8qgorjgh"
+path="res://.godot/imported/ammo_selector_up_sound.wav-60c6d98a12d6c716e433877c279cce1c.sample"
+
+[deps]
+
+source_file="res://Game Scene/Sound/Sound Effects/ammo_selector_up_sound.wav"
+dest_files=["res://.godot/imported/ammo_selector_up_sound.wav-60c6d98a12d6c716e433877c279cce1c.sample"]
+
+[params]
+
+force/8_bit=false
+force/mono=false
+force/max_rate=false
+force/max_rate_hz=44100
+edit/trim=false
+edit/normalize=false
+edit/loop_mode=0
+edit/loop_begin=0
+edit/loop_end=-1
+compress/mode=2

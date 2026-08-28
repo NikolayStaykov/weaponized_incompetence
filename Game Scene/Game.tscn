@@ -3,6 +3,7 @@
 [ext_resource type="Script" uid="uid://bqfy2up1344se" path="res://Game Scene/character_body_3d.gd" id="1_o0rjc"]
 [ext_resource type="Script" uid="uid://d2bmy3t1pyf82" path="res://Game Scene/game.gd" id="1_viuc7"]
 [ext_resource type="Texture2D" uid="uid://cqpu4snywnwxp" path="res://Game Scene/Textures/png-clipart-dark-gray-concrete-floor-cement-ground-dark-gray.png" id="2_jj0qi"]
+[ext_resource type="AudioStream" uid="uid://djupw14swx2kh" path="res://Game Scene/Sound/Music/The Escalation.mp3" id="3_8jppp"]
 [ext_resource type="FontFile" uid="uid://dwpltggtjler8" path="res://Common/Fonts/HomeVideo-BLG6G.ttf" id="3_dvvjl"]
 [ext_resource type="Script" uid="uid://cyy48qrbnw15q" path="res://Game Scene/horizontal_control.gd" id="3_yk2f3"]
 [ext_resource type="FontFile" uid="uid://cflanmckdcir" path="res://Common/Fonts/HomeVideoBold-R90Dv.ttf" id="4_3k0mj"]
@@ -13,6 +14,8 @@
 [ext_resource type="Script" uid="uid://b1ap6ct7efksd" path="res://Game Scene/mission_info_screen.gd" id="9_dburu"]
 [ext_resource type="Script" uid="uid://dd0jbt231gbmf" path="res://Game Scene/shell_selector.gd" id="10_843qc"]
 [ext_resource type="Script" uid="uid://btajgbontbvr6" path="res://Game Scene/gunners_handbook.gd" id="11_cwcgk"]
+[ext_resource type="AudioStream" uid="uid://cbpko8qgorjgh" path="res://Game Scene/Sound/Sound Effects/ammo_selector_up_sound.wav" id="13_bltve"]
+[ext_resource type="AudioStream" uid="uid://buegkgs0kx8ke" path="res://Game Scene/Sound/Sound Effects/guidebook.wav" id="16_b1g64"]
 
 [sub_resource type="CapsuleMesh" id="CapsuleMesh_dvvjl"]
 
@@ -160,6 +163,15 @@ shape = SubResource("CapsuleShape3D_yk2f3")
 [node name="Camera3D" type="Camera3D" parent="game/player" unique_id=1591421527]
 unique_name_in_owner = true
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.6642804, 0)
+
+[node name="AudioListener3D" type="AudioListener3D" parent="game/player/Camera3D" unique_id=737851382]
+current = true
+
+[node name="bgm" type="AudioStreamPlayer3D" parent="game/player/Camera3D" unique_id=33909461]
+unique_name_in_owner = true
+stream = ExtResource("3_8jppp")
+attenuation_model = 3
+autoplay = true
 
 [node name="UIContainer" type="MarginContainer" parent="game/player/Camera3D" unique_id=3177196]
 unique_name_in_owner = true
@@ -1008,6 +1020,11 @@ collision_mask = 2
 [node name="CollisionShape3D" type="CollisionShape3D" parent="game/room/control_panel/shell_selector/StaticBody3D" unique_id=418908811]
 shape = SubResource("CylinderShape3D_bltve")
 
+[node name="ammo_selector_sound" type="AudioStreamPlayer3D" parent="game/room/control_panel/shell_selector" unique_id=1875727916]
+unique_name_in_owner = true
+stream = ExtResource("13_bltve")
+attenuation_model = 3
+
 [node name="Table" type="MeshInstance3D" parent="game/room" unique_id=1002427708]
 transform = Transform3D(1.3958035, 0, 0, 0, 0.057, 0, 0, 0, 3.059744, -5.3340445, 0.43999177, 0)
 mesh = SubResource("BoxMesh_r4s8j")
@@ -1078,6 +1095,10 @@ collision_mask = 2
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="gunners_handbook/StaticBody3D" unique_id=747504385]
 shape = SubResource("BoxShape3D_843qc")
+
+[node name="handbook_sound" type="AudioStreamPlayer3D" parent="gunners_handbook" unique_id=669116708]
+unique_name_in_owner = true
+stream = ExtResource("16_b1g64")
 
 [connection signal="pressed" from="game/player/Camera3D/HandbookContainer/MarginContainer/VBoxContainer/HBoxContainer/target_list_button" to="game" method="_on_target_list_button_pressed"]
 [connection signal="pressed" from="game/player/Camera3D/HandbookContainer/MarginContainer/VBoxContainer/HBoxContainer/amunition_list_back_button" to="game" method="_on_amunition_list_back_button_pressed"]

@@ -13,10 +13,9 @@ func interact_2() -> void:
 		change_value(1)
 
 func change_value(val: int) -> void:
+	%ammo_selector_sound.play()
 	rotate_object_local(Vector3(0,1,0), 45 * val * -1)
 	current_value+=val
-	%vertical_angle_label.text = "Vertical Angle: " + str(current_value)
-	%game.update_projected_impact_label(%horizontal_control.current_value, current_value)
 
 
 func get_tooltip() -> String:

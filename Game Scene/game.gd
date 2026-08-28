@@ -9,6 +9,9 @@ func _ready() -> void:
 	mission_info = GlobalVars.missions[GlobalVars.current_mission]
 	%mission_info_label.text = mission_info.mission_brief
 	%wind_info_label.text = mission_info.wind_info
+	%bgm.volume_db = GlobalVars.music_volume
+	%ammo_selector_sound.volume_db = GlobalVars.sound_effect_volume
+	%handbook_sound.volume_db = GlobalVars.sound_effect_volume
 	update_projected_impact_label(0,0)
 	timer = Timer.new()
 	add_child(timer)
@@ -64,6 +67,7 @@ func fire_command():
 		GlobalVars.current_mission += 1
 		if(GlobalVars.current_mission == 7):
 			get_tree().create_timer(4,true).connect("timeout", back_to_main_menu)
+			GlobalVars.current_mission = 0
 		else: 
 			get_tree().create_timer(4,true).connect("timeout", start_next_mission)
 	else: 
