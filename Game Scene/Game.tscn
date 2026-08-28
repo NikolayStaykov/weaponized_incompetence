@@ -100,7 +100,7 @@ albedo_color = Color(0, 0, 0, 1)
 [sub_resource type="BoxShape3D" id="BoxShape3D_8jppp"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_yk2f3"]
-size = Vector3(6.0644836, 1, 1)
+size = Vector3(6.0644836, 0.75598145, 0.8354492)
 
 [sub_resource type="CylinderMesh" id="CylinderMesh_viuc7"]
 
@@ -260,7 +260,7 @@ theme_override_constants/margin_left = 20
 [node name="mission_failed_text" type="Label" parent="game/player/Camera3D/MissionFailedContainer/MarginContainer/VBoxContainer/MarginContainer" unique_id=1665746114]
 unique_name_in_owner = true
 layout_mode = 2
-text = "YOu have been dishonorably discharged. Thank god."
+text = "I have been dishonorably discharged. Thank god."
 label_settings = SubResource("LabelSettings_843qc")
 horizontal_alignment = 1
 vertical_alignment = 1
@@ -446,7 +446,7 @@ text = "BACk"
 
 [node name="interact_ray" type="RayCast3D" parent="game/player/Camera3D" unique_id=1769631870]
 unique_name_in_owner = true
-transform = Transform3D(1, 0, 0, 0, -4.371139e-08, -1, 0, 1, -4.371139e-08, 0, 0, -0.27902222)
+transform = Transform3D(1, 0, 0, 0, -7.0940146e-08, -1, 0, 1.6229213, -4.371139e-08, 0, 0, -0.27902222)
 collision_mask = 2
 script = ExtResource("4_xsmdc")
 
@@ -823,6 +823,16 @@ font_size = 12
 outline_size = 4
 horizontal_alignment = 0
 
+[node name="time_remaining_label" type="Label3D" parent="game/room/control_panel/mission_info_screen" unique_id=2063303498]
+unique_name_in_owner = true
+transform = Transform3D(0.8792404, 0, 0, 0, -0.09231949, 0.99573135, 0, -0.9957304, -0.09230969, -0.4617892, 0.9513855, 0.40304613)
+modulate = Color(0, 0.4509804, 0, 1)
+text = "Time Remaining: 01:30"
+font = ExtResource("3_dvvjl")
+font_size = 12
+outline_size = 4
+horizontal_alignment = 0
+
 [node name="StaticBody3D" type="StaticBody3D" parent="game/room/control_panel/mission_info_screen" unique_id=1102087619]
 collision_layer = 2
 collision_mask = 2
@@ -871,7 +881,7 @@ horizontal_alignment = 0
 [node name="StaticBody3D" type="StaticBody3D" parent="game/room/control_panel" unique_id=1785570402]
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="game/room/control_panel/StaticBody3D" unique_id=1938308079]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.23442078, 0.43813294, 0.5109749)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.23442078, 0.31612366, 0.41127586)
 shape = SubResource("BoxShape3D_yk2f3")
 
 [node name="fire_button" type="MeshInstance3D" parent="game/room/control_panel" unique_id=2138189226]

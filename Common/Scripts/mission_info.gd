@@ -10,8 +10,10 @@ var target_coordinates_horizontal: int
 var target_coordinates_vertical: int
 var required_ammo_type: int
 var mission_end_message: String
+var comment: String
+var time_limit: int
 
-static func create(brief: String, wind_inf: String, wind_vert: int, wind_horiz: int, target_horiz: int, target_vert: int, ammo: int, end_message: String) -> MissionInfo:
+static func create(brief: String, wind_inf: String, wind_vert: int, wind_horiz: int, target_horiz: int, target_vert: int, ammo: int, end_message: String, comm: String, limit: int) -> MissionInfo:
 	var info: MissionInfo = MissionInfo.new()
 	info.mission_brief = brief
 	info.wind_info = wind_inf
@@ -21,6 +23,8 @@ static func create(brief: String, wind_inf: String, wind_vert: int, wind_horiz: 
 	info.target_coordinates_vertical = target_vert
 	info.required_ammo_type = ammo
 	info.mission_end_message = end_message
+	info.comment = comm
+	info.time_limit = limit
 	return info
 	
 static func createMissionOne() -> MissionInfo:
@@ -42,7 +46,9 @@ Adjust vertical: 0
 12,
 14,
 0,
-"Can't believe neither of them got anything wrong this time.")
+"Can't believe neither of them got anything wrong this time.",
+"The bugs sure do love the tunnels.",
+300)
 
 static func createMissionTwo() -> MissionInfo:
 	return create("Target: Football Field
@@ -64,7 +70,9 @@ Adjust vertical: -1
 43,
 -1,
 "Of course it makes perfect sense to strike
- an above ground target with a bunker buster.")
+ an above ground target with a bunker buster.",
+"Never thought the bugs would be into sports.",
+240)
 
 static func createMissionThree() -> MissionInfo:
 	return create("Target: Train Yard
@@ -86,7 +94,9 @@ Adjust vertical: 4
 14,
 -1,
 "One of these days Blagoev will start accounting 
-accuratly for the wind, not today though.")
+accuratly for the wind, not today though.",
+"I always liked trains.",
+180)
 
 static func createMissionFour() -> MissionInfo:
 	return create("Target: Ministry Of Cycling
@@ -108,7 +118,9 @@ Adjust vertical: 1
 32,
 -1,
 "And when Blagoev is sober enough to calculate,
- Kapsarov gives him the worng location.")
+ Kapsarov gives him the worng location.",
+"How would a bicycle for bugs look like anyway?",
+120)
 
 
 static func createMissionFive() -> MissionInfo:
@@ -131,7 +143,9 @@ Adjust vertical: -3
 19,
 0,
 "What is this mission brief,
-is there a gas leak at HQ?")
+is there a gas leak at HQ?",
+"We should think of more unique names for the outposts this sounds lame.",
+120)
 
 static func createMissionSix() -> MissionInfo:
 	return create("Target: Museum of brutalism
@@ -153,7 +167,9 @@ Adjust vertical: -5
 32,
 0,
 "For once they get it right and it has to be the museum,
-I loved that place.")
+I loved that place.",
+"The museum? Aww man...",
+90)
 
 static func createMissionSeven() -> MissionInfo:
 	return create("Target: Mayoral Palace
@@ -175,4 +191,6 @@ Adjust vertical: 0
 33,
 1,
 "I will be executed for high treason. 
-\"I was just following orders\" did not work.")
+\"I was just following orders\" did not work.",
+"They want me to nuke the palace?",
+60)
